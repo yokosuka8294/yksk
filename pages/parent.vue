@@ -4,31 +4,6 @@
       {{ $t('臨時休校中の新型コロナウイルス感染症対応についてのお願い') }}
     </page-header>
     <static-card>
-      <h3>
-        <external-link
-          url="https://www.kyoiku.metro.tokyo.lg.jp/school/content/learning_support.html"
-          :icon-size="24"
-          >{{ $t('学びの支援サイト') }}
-        </external-link>
-      </h3>
-      <ul>
-        <li>
-          {{
-            $t(
-              '臨時休業期間における子供たちの学びを支援する様々なウェブサイトを紹介しています。'
-            )
-          }}
-        </li>
-        <li>
-          {{
-            $t(
-              '学習の基本的な内容を身に付けられる「東京・ベーシック・ドリル」や動画教材等があります。'
-            )
-          }}
-        </li>
-      </ul>
-    </static-card>
-    <static-card>
       <h3>{{ $t('感染予防・健康管理') }}</h3>
       <ul>
         <li>
@@ -59,16 +34,28 @@
     <static-card>
       <h3>{{ $t('感染症を疑う場合の対応') }}</h3>
       <ul>
-        <li>{{ $t('各保健所にご相談ください') }}</li>
         <li>
-          {{ $t('各保健所の電話番号について') }}
-          <br />
-          <external-link
-            url="https://www.fukushihoken.metro.tokyo.lg.jp/iryo/kansen/coronasodan.html"
-            :icon-size="16"
-            >{{ $t('「新型コロナウイルス感染症にかかる相談窓口について」') }}
-          </external-link>
+          {{
+            $t(
+              '「新型コロナウイルス感染症帰国者・接触者相談センターにご相談いただく目安」に該当する方は、「新型コロナウイルス感染症帰国者・接触者相談センター」にご相談ください。'
+            )
+          }}
         </li>
+        <external-link
+          url="https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/yobosesshu/kansensho/ncov-soudan.html#0BE33"
+          :icon-size="16"
+          >{{
+            $t(
+              '「新型コロナウイルス感染症帰国者・接触者相談センターにご相談いただく目安」'
+            )
+          }}
+        </external-link>
+        <br />
+        <external-link
+          url="https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/yobosesshu/kansensho/ncov-soudan.html#126A3"
+          :icon-size="16"
+          >{{ $t('「新型コロナウイルス感染症帰国者・接触者相談センター」') }}
+        </external-link>
       </ul>
     </static-card>
     <static-card>

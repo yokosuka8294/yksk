@@ -12,12 +12,12 @@
         <nuxt-link :to="localePath('/')" class="SideNavigation-HeaderLink">
           <img
             class="SideNavigation-HeaderLogo"
-            src="/logo.svg"
-            :alt="$t('東京都')"
+            src="/logo.png"
+            :alt="$t('横浜市')"
           />
           <div class="SideNavigation-HeaderText">
             {{ $t('menu/新型コロナウイルス感染症') }}<br />{{
-              $t('menu/対策サイト')
+              $t('対策サイト(非公式)')
             }}
           </div>
         </nuxt-link>
@@ -34,35 +34,13 @@
       </v-icon>
 
       <nav class="SideNavigation-Menu">
-        <div class="SideNavigation-Language">
-          <div
-            v-if="this.$i18n.locales.length > 1"
-            class="SideNavigation-Language"
-          >
-            <label class="SideNavigation-LanguageLabel" for="LanguageSelector">
-              {{ $t('多言語対応選択メニュー') }}
-            </label>
-            <language-selector />
-          </div>
-        </div>
         <menu-list :items="items" @click="$emit('closeNavi', $event)" />
       </nav>
 
       <footer class="SideNavigation-Footer">
         <div class="SideNavigation-Social">
           <a
-            href="https://line.me/R/ti/p/%40822sysfc"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="SideNavigation-SocialLink"
-          >
-            <picture>
-              <source srcset="/line.webp" type="image/webp" />
-              <img src="/line.png" alt="LINE" />
-            </picture>
-          </a>
-          <a
-            href="https://twitter.com/tokyo_bousai"
+            href="https://twitter.com/yokohama_koho"
             target="_blank"
             rel="noopener noreferrer"
             class="SideNavigation-SocialLink"
@@ -73,18 +51,7 @@
             </picture>
           </a>
           <a
-            href="https://www.facebook.com/tochokoho"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="SideNavigation-SocialLink"
-          >
-            <picture>
-              <source srcset="/facebook.webp" type="image/webp" />
-              <img src="/facebook.png" alt="Facebook" />
-            </picture>
-          </a>
-          <a
-            href="https://github.com/tokyo-metropolitan-gov/covid19"
+            href="https://github.com/code-for-yokohama/covid19"
             target="_blank"
             rel="noopener noreferrer"
             class="SideNavigation-SocialLink"
@@ -107,7 +74,7 @@
           </a>
           {{ $t('の下に提供されています。') }}
           <br />
-          2020 Tokyo Metropolitan Government
+          2020 code-for-yokohama
         </small>
       </footer>
     </div>
@@ -117,7 +84,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import { TranslateResult } from 'vue-i18n'
-import LanguageSelector from '@/components/LanguageSelector.vue'
 import MenuList from '@/components/MenuList.vue'
 
 type Item = {
@@ -129,7 +95,6 @@ type Item = {
 
 export default Vue.extend({
   components: {
-    LanguageSelector,
     MenuList
   },
   props: {
@@ -143,19 +108,14 @@ export default Vue.extend({
       return [
         {
           icon: 'mdi-chart-timeline-variant',
-          title: this.$t('都内の最新感染動向'),
+          title: this.$t('市内の最新感染動向'),
           link: this.localePath('/')
         },
         {
           icon: 'CovidIcon',
           title: this.$t('新型コロナウイルス感染症が心配なときに'),
-          link: this.localePath('/flow')
-        },
-        {
-          icon: 'CovidIcon',
-          title: this.$t('新型コロナウイルスの感染が判明した方へ'),
           link:
-            'https://www.fukushihoken.metro.tokyo.lg.jp/oshirase/corona_0401.html',
+            'https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/yobosesshu/kansensho/ncov-soudan.html',
           divider: true
         },
         {
@@ -165,46 +125,27 @@ export default Vue.extend({
         },
         {
           icon: 'mdi-account-multiple',
-          title: this.$t('都民の皆様へ'),
-          link: 'https://www.metro.tokyo.lg.jp/tosei/tosei/news/2019-ncov.html'
-        },
-        {
-          icon: 'mdi-domain',
-          title: this.$t('企業の皆様・はたらく皆様へ'),
-          link: this.localePath('/worker'),
-          divider: true
-        },
-        {
-          title: this.$t('東京都新型コロナウイルス感染症対策本部報'),
+          title: this.$t('市民の皆様へ'),
           link:
-            'https://www.bousai.metro.tokyo.lg.jp/taisaku/saigai/1007261/index.html'
+            'https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/yobosesshu/kansensho/coronavirus/coronavirus.html'
         },
         {
-          title: this.$t('新型コロナウイルス感染症に関する東京都の支援策'),
+          title: this.$t('横浜市主催等 中止又は延期するイベント等'),
           link:
-            'https://www.seisakukikaku.metro.tokyo.lg.jp/information/corona-support.html'
+            'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/event/'
         },
         {
-          title: this.$t('東京都主催等 中止又は延期するイベント等'),
+          title: this.$t('市長からのメッセージ'),
           link:
-            'https://www.seisakukikaku.metro.tokyo.lg.jp/information/event00.html'
-        },
-        {
-          title: this.$t('知事からのメッセージ'),
-          link:
-            'https://www.metro.tokyo.lg.jp/tosei/governor/governor/katsudo/2020/03/03_00.html'
+            'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/movie-list.html'
         },
         {
           title: this.$t('当サイトについて'),
           link: this.localePath('/about')
         },
         {
-          title: this.$t('お問い合わせ先一覧'),
-          link: this.localePath('/contacts')
-        },
-        {
-          title: this.$t('東京都公式ホームページ'),
-          link: 'https://www.metro.tokyo.lg.jp/'
+          title: this.$t('横浜市公式ホームページ'),
+          link: 'https://www.city.yokohama.lg.jp/'
         }
       ]
     }
@@ -242,7 +183,7 @@ export default Vue.extend({
   padding-left: 52px;
   @include largerThan($small) {
     height: auto;
-    padding: 20px;
+    padding: 0 20px;
   }
   @include lessThan($small) {
     display: flex;
@@ -327,6 +268,9 @@ export default Vue.extend({
 }
 
 .SideNavigation-HeaderLogo {
+  @include lessThan($small) {
+    width: 130px;
+  }
   @include lessThan($tiny) {
     width: 100px;
   }
@@ -422,7 +366,15 @@ export default Vue.extend({
   font-weight: bold;
 }
 
-.SideNavigation-LicenseLink {
+.SideNavigation-Link {
+  &:link,
+  &:hover,
+  &:visited,
+  &:active {
+    color: inherit;
+    text-decoration: none;
+  }
+
   &:focus {
     outline: 1px dotted $gray-3;
   }

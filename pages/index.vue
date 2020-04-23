@@ -16,7 +16,9 @@
     <whats-new class="mb-4" :items="newsItems" />
     <static-info
       class="mb-4"
-      :url="localePath('/flow')"
+      url="https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/yobosesshu/kansensho/ncov-soudan.html"
+      target="_blank"
+      rel="noopener"
       :text="$t('自分や家族の症状に不安や心配があればまずは電話相談をどうぞ')"
       :btn-text="$t('相談の手順を見る')"
     />
@@ -93,7 +95,7 @@ export default Vue.extend({
       Data,
       headerItem: {
         icon: 'mdi-chart-timeline-variant',
-        title: this.$t('test 横浜市の最新感染動向')
+        title: this.$t('市内の最新感染動向')
       },
       newsItems: News.newsItems
     }
@@ -106,7 +108,7 @@ export default Vue.extend({
   },
   head(): MetaInfo {
     return {
-      title: this.$t('test 横浜市の最新感染動向') as string
+      title: this.$t('市内の最新感染動向') as string
     }
   }
 })

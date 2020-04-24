@@ -52,11 +52,18 @@
         <div class="Footer-Left">
           <slot name="footer" />
           <div>
-            <a class="Permalink" :href="permalink()">
-              <time :datetime="formattedDate">{{
-                $t('{date} 更新', { date })
-              }}</time>
+            <a
+              target="_blank"
+              rel="noopener"
+              class="Permalink"
+              :href="sourceUrl"
+            >
+              {{ $t('出典: {sourceTitle}', { sourceTitle: sourceTitle }) }}
             </a>
+            <br />
+            <time :datetime="formattedDate">{{
+              $t('{date} 更新', { date })
+            }}</time>
           </div>
         </div>
 
@@ -179,6 +186,14 @@ import { EventBus, TOGGLE_EVENT } from '@/utils/card-event-bus'
 export default Vue.extend({
   props: {
     title: {
+      type: String,
+      default: ''
+    },
+    sourceTitle: {
+      type: String,
+      default: ''
+    },
+    sourceUrl: {
       type: String,
       default: ''
     },

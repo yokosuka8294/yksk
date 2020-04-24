@@ -2,6 +2,12 @@
   <v-col cols="12" md="6" class="DataCard">
     <data-view
       :title="$t('検査陽性者の状況')"
+      :source-title="$t('横浜市 陽性患者の発生状況のオープンデータ')"
+      :source-url="
+        $t(
+          'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html'
+        )
+      "
       :title-id="'details-of-confirmed-cases'"
       :date="updatedAt"
     >

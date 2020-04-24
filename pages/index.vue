@@ -13,14 +13,12 @@
         <span>{{ $t('注釈') }}</span>
       </div>
     </div>
-    <whats-new class="mb-4" :items="newsItems" />
     <static-info
       class="mb-4"
-      url="https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/yobosesshu/kansensho/ncov-soudan.html"
+      url="https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/covid-19/allNewsList.html"
       target="_blank"
       rel="noopener"
-      :text="$t('自分や家族の症状に不安や心配があればまずは電話相談をどうぞ')"
-      :btn-text="$t('相談の手順を見る')"
+      :text="$t('横浜市発表の新型コロナウイルス感染症に関する最新情報はこちら')"
     />
     <card-row class="DataBlock">
       <!-- 検査陽性者の状況 -->
@@ -55,7 +53,7 @@
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
 import PageHeader from '@/components/PageHeader.vue'
-import WhatsNew from '@/components/WhatsNew.vue'
+// import WhatsNew from '@/components/WhatsNew.vue'
 import StaticInfo from '@/components/StaticInfo.vue'
 import CardRow from '@/components/cards/CardRow.vue'
 import Data from '@/data/data.json'
@@ -76,7 +74,7 @@ import { convertDatetimeToISO8601Format } from '@/utils/formatDate'
 export default Vue.extend({
   components: {
     PageHeader,
-    WhatsNew,
+    //     WhatsNew,
     StaticInfo,
     CardRow,
     ConfirmedCasesDetailsCard

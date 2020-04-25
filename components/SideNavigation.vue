@@ -16,7 +16,7 @@
             :alt="$t('横浜市')"
           />
           <div class="SideNavigation-HeaderText">
-            {{ $t('menu/新型コロナウイルス感染症') }}<br />{{
+            {{ $t('新型コロナウイルス感染症') }}<br />{{
               $t('対策サイト(非公式)')
             }}
           </div>

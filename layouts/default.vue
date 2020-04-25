@@ -140,7 +140,7 @@ export default Vue.extend({
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://covid19.yokohama{this.$route.path}`
+          content: `https://covid19.yokohama${this.$route.path}`
         },
         ogLocale,
         {

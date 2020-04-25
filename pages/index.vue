@@ -57,17 +57,18 @@
 <script lang="ts">
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
+import Data from '@/data/data.json'
+
 import PageHeader from '@/components/PageHeader.vue'
-// import WhatsNew from '@/components/WhatsNew.vue'
 import StaticInfo from '@/components/StaticInfo.vue'
+
 import CardRow from '@/components/cards/CardRow.vue'
-// import AgeCard from '@/components/cards/AgeCard.vue'
 import CitiesCard from '@/components/cards/CitiesCard.vue'
 import IbarakiGraphicalMapCard from '@/components/cards/IbarakiGraphicalMapCard.vue'
-
-import Data from '@/data/data.json'
-import News from '@/data/news.json'
 import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsCard.vue'
+
+// import AgeCard from '@/components/cards/AgeCard.vue'
+
 // import ConfirmedCasesNumberCard from '@/components/cards/ConfirmedCasesNumberCard.vue'
 // import ConfirmedCasesAttributesCard from '@/components/cards/ConfirmedCasesAttributesCard.vue'
 // import ConfirmedCasesByMunicipalitiesCard from '@/components/cards/ConfirmedCasesByMunicipalitiesCard.vue'
@@ -83,13 +84,13 @@ import { convertDatetimeToISO8601Format } from '@/utils/formatDate'
 export default Vue.extend({
   components: {
     PageHeader,
-    //     WhatsNew,
     StaticInfo,
     CardRow,
-    //     AgeCard,
     CitiesCard,
     IbarakiGraphicalMapCard,
     ConfirmedCasesDetailsCard
+    //     AgeCard,
+    //     WhatsNew,
     //     ConfirmedCasesNumberCard,
     //     ConfirmedCasesAttributesCard,
     //     ConfirmedCasesByMunicipalitiesCard,
@@ -107,8 +108,7 @@ export default Vue.extend({
       headerItem: {
         icon: 'mdi-chart-timeline-variant',
         title: this.$t('市内の最新感染動向')
-      },
-      newsItems: News.newsItems
+      }
     }
     return data
   },

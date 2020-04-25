@@ -1,0 +1,74 @@
+[
+  {
+    "city": "鶴見区",
+      "Romaji": "tsurumi"
+  },
+  {
+    "city": "神奈川区",
+    "Romaji": "kanagawa"
+  },
+  {
+    "city": "西区",
+    "Romaji": "nishi"
+  },
+  {
+    "city": "中区",
+    "Romaji": "naka"
+  },
+  {
+    "city": "南区",
+    "Romaji": "minami"
+  },
+  {
+    "city": "港南区",
+    "Romaji": "kounan"
+  },
+  {
+    "city": "保土ケ谷区",
+    "Romaji": "hodogaya"
+  },
+  {
+    "city": "旭区",
+    "Romaji": "asahi"
+  },
+  {
+    "city": "磯子区",
+    "Romaji": "isogo"
+  },
+  {
+    "city": "金沢区",
+    "Romaji": "kanazawa"
+  },
+  {
+    "city": "港北区",
+    "Romaji": "kouhoku"
+  },
+  {
+    "city": "緑区",
+    "Romaji": "midori"
+  },
+  {
+    "city": "青葉区",
+    "Romaji": "aoba"
+  },
+  {
+    "city": "都筑区",
+    "Romaji": "tsuzuki"
+  },
+  {
+    "city": "戸塚区",
+    "Romaji": "totsuka"
+  },
+  {
+    "city": "栄区",
+    "Romaji": "sakae"
+  },
+  {
+    "city": "泉区",
+    "Romaji": "izumi"
+  },
+  {
+    "city": "瀬谷区",
+    "Romaji": "seya"
+  }
+]

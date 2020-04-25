@@ -25,9 +25,10 @@
       <confirmed-cases-details-card />
       <!-- 区別の検査陽性者 -->
       <cities-card />
+      <!-- 区別マップ表示 -->
+      <ibaraki-graphical-map-card />
 
       <!--       <confirmed-cases-details-card /> -->
-
       <!-- 陽性患者数 -->
       <!--       <confirmed-cases-number-card /> -->
       <!-- 陽性患者の属性 -->
@@ -62,6 +63,7 @@ import StaticInfo from '@/components/StaticInfo.vue'
 import CardRow from '@/components/cards/CardRow.vue'
 // import AgeCard from '@/components/cards/AgeCard.vue'
 import CitiesCard from '@/components/cards/CitiesCard.vue'
+import IbarakiGraphicalMapCard from '@/components/cards/IbarakiGraphicalMapCard.vue'
 
 import Data from '@/data/data.json'
 import News from '@/data/news.json'
@@ -86,6 +88,7 @@ export default Vue.extend({
     CardRow,
     //     AgeCard,
     CitiesCard,
+    IbarakiGraphicalMapCard,
     ConfirmedCasesDetailsCard
     //     ConfirmedCasesNumberCard,
     //     ConfirmedCasesAttributesCard,

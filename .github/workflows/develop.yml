@@ -1,11 +1,12 @@
-name: build check
+name: development deploy
 
 on:
   push:
     branches:
-      - staging
+      - development
+
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
@@ -25,10 +26,12 @@ jobs:
 
       - run: yarn install --frozen-lockfile
       - run: yarn run test
-      - run: yarn run generate:deploy --fail-on-page-error
+      - run: yarn run generate --fail-on-page-error
+      - run: "echo \"User-agent: *\nDisallow: /\" > ./dist/robots.txt"
 
-      - name: archive dist
-        uses: actions/upload-artifact@v1
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: dist
-          path: dist
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: dev-pages

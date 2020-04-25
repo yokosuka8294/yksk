@@ -13,36 +13,42 @@
         <span>{{ $t('注釈') }}</span>
       </div>
     </div>
-    <whats-new class="mb-4" :items="newsItems" />
     <static-info
       class="mb-4"
-      :url="localePath('/flow')"
-      :text="$t('自分や家族の症状に不安や心配があればまずは電話相談をどうぞ')"
-      :btn-text="$t('相談の手順を見る')"
+      url="https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/covid-19/allNewsList.html"
+      target="_blank"
+      rel="noopener"
+      :text="$t('横浜市発表の新型コロナウイルス感染症に関する最新情報はこちら')"
     />
     <card-row class="DataBlock">
       <!-- 検査陽性者の状況 -->
       <confirmed-cases-details-card />
+      <!-- 区別の検査陽性者 -->
+      <cities-card />
+      <!-- 区別マップ表示 -->
+      <ibaraki-graphical-map-card />
+
+      <!--       <confirmed-cases-details-card /> -->
       <!-- 陽性患者数 -->
-      <confirmed-cases-number-card />
+      <!--       <confirmed-cases-number-card /> -->
       <!-- 陽性患者の属性 -->
-      <confirmed-cases-attributes-card />
+      <!--       <confirmed-cases-attributes-card /> -->
       <!-- 区市町村別患者数 -->
-      <confirmed-cases-by-municipalities-card />
+      <!--       <confirmed-cases-by-municipalities-card /> -->
       <!-- 検査実施状況 -->
-      <tested-cases-details-card />
+      <!--       <tested-cases-details-card /> -->
       <!-- 検査実施人数 -->
-      <inspection-persons-number-card />
+      <!--       <inspection-persons-number-card /> -->
       <!-- 検査実施件数 -->
-      <tested-number-card />
+      <!--       <tested-number-card /> -->
       <!-- 新型コロナコールセンター相談件数 -->
-      <telephone-advisory-reports-number-card />
+      <!--       <telephone-advisory-reports-number-card /> -->
       <!-- 新型コロナ受診相談窓口相談件数 -->
-      <consultation-desk-reports-number-card />
+      <!--       <consultation-desk-reports-number-card /> -->
       <!-- 都営地下鉄の利用者数の推移 -->
-      <metro-card />
+      <!--       <metro-card /> -->
       <!-- 都庁来庁者数の推移 -->
-      <agency-card />
+      <!--       <agency-card /> -->
     </card-row>
     <v-divider />
   </div>
@@ -52,48 +58,55 @@
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
 import PageHeader from '@/components/PageHeader.vue'
-import WhatsNew from '@/components/WhatsNew.vue'
+// import WhatsNew from '@/components/WhatsNew.vue'
 import StaticInfo from '@/components/StaticInfo.vue'
 import CardRow from '@/components/cards/CardRow.vue'
+// import AgeCard from '@/components/cards/AgeCard.vue'
+import CitiesCard from '@/components/cards/CitiesCard.vue'
+import IbarakiGraphicalMapCard from '@/components/cards/IbarakiGraphicalMapCard.vue'
+
 import Data from '@/data/data.json'
 import News from '@/data/news.json'
 import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsCard.vue'
-import ConfirmedCasesNumberCard from '@/components/cards/ConfirmedCasesNumberCard.vue'
-import ConfirmedCasesAttributesCard from '@/components/cards/ConfirmedCasesAttributesCard.vue'
-import ConfirmedCasesByMunicipalitiesCard from '@/components/cards/ConfirmedCasesByMunicipalitiesCard.vue'
-import TestedCasesDetailsCard from '@/components/cards/TestedCasesDetailsCard.vue'
-import InspectionPersonsNumberCard from '@/components/cards/InspectionPersonsNumberCard.vue'
-import TestedNumberCard from '@/components/cards/TestedNumberCard.vue'
-import TelephoneAdvisoryReportsNumberCard from '@/components/cards/TelephoneAdvisoryReportsNumberCard.vue'
-import ConsultationDeskReportsNumberCard from '@/components/cards/ConsultationDeskReportsNumberCard.vue'
-import MetroCard from '@/components/cards/MetroCard.vue'
-import AgencyCard from '@/components/cards/AgencyCard.vue'
+// import ConfirmedCasesNumberCard from '@/components/cards/ConfirmedCasesNumberCard.vue'
+// import ConfirmedCasesAttributesCard from '@/components/cards/ConfirmedCasesAttributesCard.vue'
+// import ConfirmedCasesByMunicipalitiesCard from '@/components/cards/ConfirmedCasesByMunicipalitiesCard.vue'
+// import TestedCasesDetailsCard from '@/components/cards/TestedCasesDetailsCard.vue'
+// import InspectionPersonsNumberCard from '@/components/cards/InspectionPersonsNumberCard.vue'
+// import TestedNumberCard from '@/components/cards/TestedNumberCard.vue'
+// import TelephoneAdvisoryReportsNumberCard from '@/components/cards/TelephoneAdvisoryReportsNumberCard.vue'
+// import ConsultationDeskReportsNumberCard from '@/components/cards/ConsultationDeskReportsNumberCard.vue'
+// import MetroCard from '@/components/cards/MetroCard.vue'
+// import AgencyCard from '@/components/cards/AgencyCard.vue'
 import { convertDatetimeToISO8601Format } from '@/utils/formatDate'
 
 export default Vue.extend({
   components: {
     PageHeader,
-    WhatsNew,
+    //     WhatsNew,
     StaticInfo,
     CardRow,
-    ConfirmedCasesDetailsCard,
-    ConfirmedCasesNumberCard,
-    ConfirmedCasesAttributesCard,
-    ConfirmedCasesByMunicipalitiesCard,
-    TestedCasesDetailsCard,
-    InspectionPersonsNumberCard,
-    TestedNumberCard,
-    TelephoneAdvisoryReportsNumberCard,
-    ConsultationDeskReportsNumberCard,
-    MetroCard,
-    AgencyCard
+    //     AgeCard,
+    CitiesCard,
+    IbarakiGraphicalMapCard,
+    ConfirmedCasesDetailsCard
+    //     ConfirmedCasesNumberCard,
+    //     ConfirmedCasesAttributesCard,
+    //     ConfirmedCasesByMunicipalitiesCard,
+    //     TestedCasesDetailsCard,
+    //     InspectionPersonsNumberCard,
+    //     TestedNumberCard,
+    //     TelephoneAdvisoryReportsNumberCard,
+    //     ConsultationDeskReportsNumberCard,
+    //     MetroCard,
+    //     AgencyCard
   },
   data() {
     const data = {
       Data,
       headerItem: {
         icon: 'mdi-chart-timeline-variant',
-        title: this.$t('都内の最新感染動向')
+        title: this.$t('市内の最新感染動向')
       },
       newsItems: News.newsItems
     }
@@ -106,7 +119,7 @@ export default Vue.extend({
   },
   head(): MetaInfo {
     return {
-      title: this.$t('都内の最新感染動向') as string
+      title: this.$t('市内の最新感染動向') as string
     }
   }
 })

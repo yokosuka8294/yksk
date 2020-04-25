@@ -52,11 +52,18 @@
         <div class="Footer-Left">
           <slot name="footer" />
           <div>
-            <a class="Permalink" :href="permalink()">
-              <time :datetime="formattedDate">{{
-                $t('{date} 更新', { date })
-              }}</time>
+            <a
+              target="_blank"
+              rel="noopener"
+              class="Permalink"
+              :href="sourceUrl"
+            >
+              {{ $t('出典: {sourceTitle}', { sourceTitle: sourceTitle }) }}
             </a>
+            <br />
+            <time :datetime="formattedDate">{{
+              $t('{date} 更新', { date })
+            }}</time>
           </div>
         </div>
 
@@ -182,6 +189,14 @@ export default Vue.extend({
       type: String,
       default: ''
     },
+    sourceTitle: {
+      type: String,
+      default: ''
+    },
+    sourceUrl: {
+      type: String,
+      default: ''
+    },
     titleId: {
       type: String,
       default: ''
@@ -274,7 +289,7 @@ export default Vue.extend({
         'https://twitter.com/intent/tweet?text=' +
         this.title +
         ' / ' +
-        this.$t('東京都') +
+        this.$t('横浜市') +
         this.$t('新型コロナウイルス感染症') +
         this.$t('対策サイト') +
         '&url=' +

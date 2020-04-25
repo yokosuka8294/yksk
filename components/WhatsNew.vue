@@ -7,6 +7,7 @@
         </v-icon>
         {{ $t('最新のお知らせ') }}
       </h3>
+      <!--
       <span class="WhatsNew-link-to-emergency-page">
         <v-icon size="20" class="WhatsNew-link-to-emergency-page-icon">
           mdi-bullhorn
@@ -17,6 +18,9 @@
           {{ $t('東京都緊急事態措置について') }}
         </external-link>
       </span>
+ -->
+      <external-link />
+      <!-- 不要、エラー避け -->
     </div>
     <ul class="WhatsNew-list">
       <li v-for="(item, i) in items" :key="i" class="WhatsNew-list-item">

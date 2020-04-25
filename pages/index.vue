@@ -23,6 +23,10 @@
     <card-row class="DataBlock">
       <!-- 検査陽性者の状況 -->
       <confirmed-cases-details-card />
+      <!-- 区別の検査陽性者 -->
+      <cities-card />
+
+      <!--       <confirmed-cases-details-card /> -->
 
       <!-- 陽性患者数 -->
       <!--       <confirmed-cases-number-card /> -->
@@ -56,6 +60,9 @@ import PageHeader from '@/components/PageHeader.vue'
 // import WhatsNew from '@/components/WhatsNew.vue'
 import StaticInfo from '@/components/StaticInfo.vue'
 import CardRow from '@/components/cards/CardRow.vue'
+// import AgeCard from '@/components/cards/AgeCard.vue'
+import CitiesCard from '@/components/cards/CitiesCard.vue'
+
 import Data from '@/data/data.json'
 import News from '@/data/news.json'
 import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsCard.vue'
@@ -77,6 +84,8 @@ export default Vue.extend({
     //     WhatsNew,
     StaticInfo,
     CardRow,
+    //     AgeCard,
+    CitiesCard,
     ConfirmedCasesDetailsCard
     //     ConfirmedCasesNumberCard,
     //     ConfirmedCasesAttributesCard,

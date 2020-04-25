@@ -1,7 +1,7 @@
 <template>
   <v-col cols="12" md="6" class="DataCard">
     <data-view
-      :title="$t('区別の陽性患者所在地')"
+      :title="$t('区別 陽性者人数マップ(退院含む)')"
       :title-id="'ibaraki-city-map-table'"
       :date="Data.patients.date"
       :source-title="$t('横浜市内の陽性患者の発生状況データ')"
@@ -12,7 +12,6 @@
       "
     >
       <template v-slot:button>
-        <p>凡例（人数, 退院者含む）</p>
         <table>
           <tbody>
             <tr>

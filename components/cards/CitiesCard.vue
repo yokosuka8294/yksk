@@ -1,7 +1,7 @@
 <template>
   <v-col cols="12" md="6" class="DataCard">
     <cities-bar-chart
-      :title="$t('区別 陽性者累計(退院者含む)')"
+      :title="$t('区別 陽性者人数(退院含む)')"
       :title-id="'cities'"
       :chart-id="'cities'"
       :chart-data="citiesData"

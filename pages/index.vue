@@ -9,9 +9,7 @@
       <div
         v-show="!['ja', 'ja-basic'].includes($i18n.locale)"
         class="Annotation"
-      >
-        <span>{{ $t('注釈') }}</span>
-      </div>
+      />
     </div>
     <static-info
       class="mb-4"

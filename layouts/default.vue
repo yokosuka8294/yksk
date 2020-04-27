@@ -115,7 +115,7 @@ export default Vue.extend({
         {
           hid: 'author',
           name: 'author',
-          content: this.$tc('code-for-yokohama')
+          content: this.$tc('covid19yokohama')
         },
         {
           hid: 'description',

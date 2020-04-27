@@ -22,7 +22,7 @@
             <tr>
               <td><span class="color-test infected-level4" />16-20</td>
               <td><span class="color-test infected-level5" />21-30</td>
-              <td><span class="color-test infected-level6" />31以上</td>
+              <td><span class="color-test infected-level6" />31-</td>
             </tr>
           </tbody>
         </table>

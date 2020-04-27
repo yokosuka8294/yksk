@@ -33,6 +33,23 @@
         mdi-close
       </v-icon>
 
+      <!--
+      <nav class="SideNavigation-Menu">
+        <div class="SideNavigation-Language">
+          <div
+            v-if="this.$i18n.locales.length > 1"
+            class="SideNavigation-Language"
+          >
+            <label class="SideNavigation-LanguageLabel" for="LanguageSelector">
+              {{ $t('多言語対応選択メニュー') }}
+            </label>
+            <language-selector />
+          </div>
+        </div>
+        <menu-list :items="items" @click="$emit('closeNavi', $event)" />
+      </nav>
+ -->
+
       <nav class="SideNavigation-Menu">
         <menu-list :items="items" @click="$emit('closeNavi', $event)" />
       </nav>
@@ -84,6 +101,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { TranslateResult } from 'vue-i18n'
+// import LanguageSelector from '@/components/LanguageSelector.vue'
 import MenuList from '@/components/MenuList.vue'
 
 type Item = {
@@ -95,6 +113,7 @@ type Item = {
 
 export default Vue.extend({
   components: {
+    //     LanguageSelector,
     MenuList
   },
   props: {
@@ -106,6 +125,11 @@ export default Vue.extend({
   computed: {
     items(): Item[] {
       return [
+        {
+          icon: 'en',
+          title: this.$t('English Page'),
+          link: this.localePath('/en')
+        },
         {
           icon: 'mdi-chart-timeline-variant',
           title: this.$t('市内の最新感染動向'),

@@ -228,6 +228,32 @@
         </i18n>
       </p>
     </static-card>
+    <static-card>
+      <h3>
+        {{
+          $t(
+            '「区別 陽性者人数マップ」に使用している横浜市の地図データについて'
+          )
+        }}
+      </h3>
+      <p>
+        {{
+          $t(
+            '当サイトで利用している地図データは国土数値情報を出典としており、本サイトの運営者が加工しています。'
+          )
+        }}
+        <i18n path="詳しくは、{kokudosuri}をご確認ください。">
+          <template v-slot:kokudosuri>
+            <external-link
+              url="http://nlftp.mlit.go.jp/ksj/index.html"
+              :icon-size="16"
+            >
+              {{ $t('国土数値情報 ダウンロードサービス') }}
+            </external-link>
+          </template>
+        </i18n>
+      </p>
+    </static-card>
   </div>
 </template>
 

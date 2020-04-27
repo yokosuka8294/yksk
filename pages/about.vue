@@ -219,7 +219,7 @@
         <i18n path="詳しくは、{githubRepo}をご確認ください。">
           <template v-slot:githubRepo>
             <external-link
-              url="https://github.com/code-for-yokohama/covid19"
+              url="https://github.com/covid19yokohama/covid19"
               :icon-size="16"
             >
               {{ $t('GitHub リポジトリ') }}

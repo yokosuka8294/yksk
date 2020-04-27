@@ -51,7 +51,7 @@
             </picture>
           </a>
           <a
-            href="https://github.com/code-for-yokohama/covid19"
+            href="https://github.com/covid19yokohama/covid19"
             target="_blank"
             rel="noopener noreferrer"
             class="SideNavigation-SocialLink"
@@ -74,7 +74,7 @@
           </a>
           {{ $t('の下に提供されています。') }}
           <br />
-          2020 code-for-yokohama
+          2020 covid19yokohama
         </small>
       </footer>
     </div>

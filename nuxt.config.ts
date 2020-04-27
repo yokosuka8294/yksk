@@ -33,12 +33,12 @@ const config: Configuration = {
       {
         hid: 'twitter:site',
         name: 'twitter:site',
-        content: '@CodeForYokohama'
+        content: '@covid19yokohama'
       },
       {
         hid: 'twitter:creator',
         name: 'twitter:creator',
-        content: '@CodeForYokohama'
+        content: '@covid19yokohama'
       },
       {
         hid: 'fb:app_id',

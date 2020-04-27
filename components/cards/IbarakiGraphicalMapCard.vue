@@ -12,7 +12,7 @@
       "
     >
       <template v-slot:button>
-        <table>
+        <table class="regend-table">
           <tbody>
             <tr>
               <td><span class="color-test infected-level1" />1-5</td>
@@ -100,12 +100,27 @@ $infected-level4: #00c1d5;
 $infected-level5: #004da5;
 $infected-level6: #000072;
 
+td {
+  font-size: 0.9em;
+  padding: 0 0 0 10px;
+  font-weight: 300;
+}
+
+td span {
+  padding: 0 0 0 10px;
+}
+
+.regend-table {
+  margin: auto;
+  padding-top: 15px;
+}
+
 .color-test {
   vertical-align: middle;
-  width: 2.5rem;
+  width: 2rem;
   height: 1rem;
   display: inline-block;
-  margin: 0 0.5rem 0 0;
+  margin: 0 0.3rem 0 0;
 }
 // 1-5
 .infected-level1 {

@@ -28,6 +28,9 @@
       <!-- 区別マップ表示 -->
       <ibaraki-graphical-map-card />
 
+      <!-- 都庁来庁者数の推移 -->
+      <agency-card />
+
       <!--       <confirmed-cases-details-card /> -->
       <!-- 陽性患者数 -->
       <!--       <confirmed-cases-number-card /> -->
@@ -47,8 +50,6 @@
       <!--       <consultation-desk-reports-number-card /> -->
       <!-- 都営地下鉄の利用者数の推移 -->
       <!--       <metro-card /> -->
-      <!-- 都庁来庁者数の推移 -->
-      <!--       <agency-card /> -->
     </card-row>
     <v-divider />
   </div>
@@ -68,7 +69,6 @@ import IbarakiGraphicalMapCard from '@/components/cards/IbarakiGraphicalMapCard.
 import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsCard.vue'
 
 // import AgeCard from '@/components/cards/AgeCard.vue'
-
 // import ConfirmedCasesNumberCard from '@/components/cards/ConfirmedCasesNumberCard.vue'
 // import ConfirmedCasesAttributesCard from '@/components/cards/ConfirmedCasesAttributesCard.vue'
 // import ConfirmedCasesByMunicipalitiesCard from '@/components/cards/ConfirmedCasesByMunicipalitiesCard.vue'
@@ -78,7 +78,7 @@ import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsC
 // import TelephoneAdvisoryReportsNumberCard from '@/components/cards/TelephoneAdvisoryReportsNumberCard.vue'
 // import ConsultationDeskReportsNumberCard from '@/components/cards/ConsultationDeskReportsNumberCard.vue'
 // import MetroCard from '@/components/cards/MetroCard.vue'
-// import AgencyCard from '@/components/cards/AgencyCard.vue'
+import AgencyCard from '@/components/cards/AgencyCard.vue'
 import { convertDatetimeToISO8601Format } from '@/utils/formatDate'
 
 export default Vue.extend({
@@ -88,7 +88,7 @@ export default Vue.extend({
     CardRow,
     CitiesCard,
     IbarakiGraphicalMapCard,
-    ConfirmedCasesDetailsCard
+    ConfirmedCasesDetailsCard,
     //     AgeCard,
     //     WhatsNew,
     //     ConfirmedCasesNumberCard,
@@ -100,7 +100,7 @@ export default Vue.extend({
     //     TelephoneAdvisoryReportsNumberCard,
     //     ConsultationDeskReportsNumberCard,
     //     MetroCard,
-    //     AgencyCard
+    AgencyCard
   },
   data() {
     const data = {

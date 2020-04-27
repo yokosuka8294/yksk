@@ -1,10 +1,15 @@
 <template>
-  <data-view :title="title" :title-id="titleId" :date="date">
-    <template v-slot:infoPanel>
-      <small :class="$style.DataViewDesc">
-        <slot name="description" />
-      </small>
-    </template>
+  <data-view
+    :title="title"
+    :title-id="titleId"
+    :date="date"
+    :source-title="$t('横浜市内の陽性患者の発生状況データ')"
+    :source-url="
+      $t(
+        'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html'
+      )
+    "
+  >
     <h4 :id="`${titleId}-graph`" class="visually-hidden">
       {{ $t(`{title}のグラフ`, { title }) }}
     </h4>
@@ -14,7 +19,7 @@
       :chart-id="chartId"
       :chart-data="displayData"
       :options="displayOption"
-      :height="240"
+      :height="340"
     />
     <template v-slot:dataTable>
       <v-data-table
@@ -36,6 +41,22 @@
               <td class="text-end">{{ item[0] }}</td>
               <td class="text-end">{{ item[1] }}</td>
               <td class="text-end">{{ item[2] }}</td>
+              <td class="text-end">{{ item[3] }}</td>
+              <td class="text-end">{{ item[4] }}</td>
+              <td class="text-end">{{ item[5] }}</td>
+              <td class="text-end">{{ item[6] }}</td>
+              <td class="text-end">{{ item[7] }}</td>
+              <td class="text-end">{{ item[8] }}</td>
+              <td class="text-end">{{ item[9] }}</td>
+              <td class="text-end">{{ item[10] }}</td>
+              <td class="text-end">{{ item[11] }}</td>
+              <td class="text-end">{{ item[12] }}</td>
+              <td class="text-end">{{ item[13] }}</td>
+              <td class="text-end">{{ item[14] }}</td>
+              <td class="text-end">{{ item[15] }}</td>
+              <td class="text-end">{{ item[16] }}</td>
+              <td class="text-end">{{ item[17] }}</td>
+              <td class="text-end">{{ item[18] }}</td>
             </tr>
           </tbody>
         </template>
@@ -124,9 +145,25 @@ const options: ThisTypedComponentOptionsWithRecordProps<
   },
   data() {
     const agencies = [
-      this.$t('第一庁舎計'),
-      this.$t('第二庁舎計'),
-      this.$t('議事堂計')
+      this.$t('鶴見区'),
+      this.$t('神奈川区'),
+      this.$t('西区'),
+      this.$t('中区'),
+      this.$t('南区'),
+      this.$t('港南区'),
+      this.$t('保土ヶ谷区'),
+      this.$t('旭区'),
+      this.$t('磯子区'),
+      this.$t('金沢区'),
+      this.$t('港北区'),
+      this.$t('緑区'),
+      this.$t('青葉区'),
+      this.$t('都筑区'),
+      this.$t('戸塚区'),
+      this.$t('栄区'),
+      this.$t('泉区'),
+      this.$t('瀬谷区'),
+      this.$t('市外')
     ]
 
     return {

@@ -29,6 +29,9 @@
       <!-- 都庁来庁者数の推移 -->
       <agency-card />
 
+      <!-- 都庁来庁者数の推移 -->
+      <agency-card2 />
+
       <!--       <confirmed-cases-details-card /> -->
       <!-- 陽性患者数 -->
       <!--       <confirmed-cases-number-card /> -->
@@ -77,6 +80,7 @@ import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsC
 // import ConsultationDeskReportsNumberCard from '@/components/cards/ConsultationDeskReportsNumberCard.vue'
 // import MetroCard from '@/components/cards/MetroCard.vue'
 import AgencyCard from '@/components/cards/AgencyCard.vue'
+import AgencyCard2 from '@/components/cards/AgencyCard2.vue'
 import { convertDatetimeToISO8601Format } from '@/utils/formatDate'
 
 export default Vue.extend({
@@ -98,6 +102,7 @@ export default Vue.extend({
     //     TelephoneAdvisoryReportsNumberCard,
     //     ConsultationDeskReportsNumberCard,
     //     MetroCard,
+    AgencyCard2,
     AgencyCard
   },
   data() {

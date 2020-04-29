@@ -34,7 +34,7 @@ export default {
     const confirmedCases = formatConfirmedCases(Data.main_summary)
 
     const updatedAt = dayjs(Data.main_summary.children[0].date).format(
-      'YYYY/MM/DD HH:mm'
+      'YYYY/M/DD'
     )
 
     const data = {

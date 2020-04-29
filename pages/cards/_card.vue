@@ -3,9 +3,11 @@
     <confirmed-cases-details-card
       v-if="this.$route.params.card == 'ConfirmedCasesDetailsCard'"
     />
+
     <cities-card v-else-if="this.$route.params.card == 'Cities'" />
+
     <ibaraki-graphical-map-card
-      v-else-if="this.$route.params.card == 'IbarakiGraphicalMap'"
+      v-else-if="this.$route.params.card == 'IbarakiGraphicalMapCard'"
     />
 
     <!--     <tested-cases-details-card
@@ -45,15 +47,15 @@
         this.$route.params.card == 'predicted-number-of-toei-subway-passengers'
       "
     />
-    <agency-card v-else-if="this.$route.params.card == 'agency'" />
  -->
+    <agency-card v-else-if="this.$route.params.card == 'agency'" />
   </div>
 </template>
 
 <script>
 import Data from '@/data/data.json'
+import agencyData from '@/data/agency.json'
 // import MetroData from '@/data/metro.json'
-// import agencyData from '@/data/agency.json'
 // import patientData from '@/data/patient.json'
 
 import CitiesCard from '@/components/cards/CitiesCard.vue'
@@ -70,13 +72,13 @@ import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsC
 // import TelephoneAdvisoryReportsNumberCard from '@/components/cards/TelephoneAdvisoryReportsNumberCard.vue'
 // import ConsultationDeskReportsNumberCard from '@/components/cards/ConsultationDeskReportsNumberCard.vue'
 // import MetroCard from '@/components/cards/MetroCard.vue'
-// import AgencyCard from '@/components/cards/AgencyCard.vue'
+import AgencyCard from '@/components/cards/AgencyCard.vue'
 
 export default {
   components: {
     CitiesCard,
     IbarakiGraphicalMapCard,
-    ConfirmedCasesDetailsCard
+    ConfirmedCasesDetailsCard,
     //     ConfirmedCasesDetailsCard,
     //     TestedCasesDetailsCard,
     //     ConfirmedCasesNumberCard,
@@ -87,7 +89,7 @@ export default {
     //     TelephoneAdvisoryReportsNumberCard,
     //     ConsultationDeskReportsNumberCard,
     //     MetroCard,
-    //     AgencyCard
+    AgencyCard
   },
   data() {
     let title, updatedAt
@@ -144,10 +146,10 @@ export default {
       //         title = this.$t('都営地下鉄の利用者数の推移')
       //         updatedAt = MetroData.date
       //         break
-      //       case 'agency':
-      //         title = this.$t('都庁来庁者数の推移')
-      //         updatedAt = agencyData.date
-      //         break
+      case 'agency':
+        title = this.$t('陽性患者数の推移')
+        updatedAt = agencyData.date
+        break
     }
 
     const data = {

@@ -3,7 +3,7 @@ git add .;
 git commit -m "update data";
 git push;
 git checkout master;
-git merge development;
+git merge  -m "update data" development;
 git push;
-git checkout development
-echo "done"
+git checkout development;
+echo "done";

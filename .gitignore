@@ -1,7 +1,7 @@
 data/*.sh
 data/*.php
 data/twitte*
-
+master.sh
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template

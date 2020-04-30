@@ -19,19 +19,20 @@
       :text="$t('横浜市発表の新型コロナウイルス感染症に関する最新情報はこちら')"
     />
     <card-row class="DataBlock">
-      <!-- 検査陽性者の状況 -->
-      <confirmed-cases-details-card />
-      <!-- 区別の検査陽性者 -->
-      <cities-card />
+      <!-- 都庁来庁者数の推移 -->
+      <agency-card2 />
+
       <!-- 区別マップ表示 -->
       <ibaraki-graphical-map-card />
+
+      <!-- 区別の検査陽性者 -->
+      <cities-card />
 
       <!-- 都庁来庁者数の推移 -->
       <agency-card />
 
-      <!-- 都庁来庁者数の推移 -->
-      <agency-card2 />
-
+      <!-- 検査陽性者の状況 -->
+      <confirmed-cases-details-card />
       <!--       <confirmed-cases-details-card /> -->
       <!-- 陽性患者数 -->
       <!--       <confirmed-cases-number-card /> -->

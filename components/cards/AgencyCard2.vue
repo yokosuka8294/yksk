@@ -2,8 +2,8 @@
   <v-col cols="12" md="6" class="DataCard">
     <agency-bar-chart
       :title="$t('陽性患者の状況の推移')"
-      :title-id="'agency'"
-      :chart-id="'agency'"
+      :title-id="'patients-status'"
+      :chart-id="'patients-status'"
       :chart-data="agencyData"
       :date="agencyData.date"
       :unit="$t('人')"

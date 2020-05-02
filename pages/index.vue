@@ -20,7 +20,7 @@
     />
     <card-row class="DataBlock">
       <!-- 都庁来庁者数の推移 -->
-      <!--       <agency-card3 /> -->
+      <agency-card3 />
 
       <!-- 都庁来庁者数の推移 -->
       <agency-card2 />
@@ -85,7 +85,7 @@ import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsC
 // import MetroCard from '@/components/cards/MetroCard.vue'
 import AgencyCard from '@/components/cards/AgencyCard.vue'
 import AgencyCard2 from '@/components/cards/AgencyCard2.vue'
-// import AgencyCard3 from '@/components/cards/AgencyCard3.vue'
+import AgencyCard3 from '@/components/cards/AgencyCard3.vue'
 import { convertDatetimeToISO8601Format } from '@/utils/formatDate'
 
 export default Vue.extend({
@@ -108,7 +108,7 @@ export default Vue.extend({
     //     ConsultationDeskReportsNumberCard,
     //     MetroCard,
     AgencyCard2,
-    //     AgencyCard3,
+    AgencyCard3,
     AgencyCard
   },
   data() {

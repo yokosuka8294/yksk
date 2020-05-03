@@ -19,6 +19,9 @@
       :text="$t('横浜市発表の新型コロナウイルス感染症に関する最新情報はこちら')"
     />
     <card-row class="DataBlock">
+      <!-- PCR検査数 -->
+      <agency-card4 />
+
       <!-- 陽性患者状況 -->
       <agency-card2 />
 
@@ -35,7 +38,7 @@
       <agency-card />
 
       <!-- 検査陽性者の状況 -->
-      <confirmed-cases-details-card />
+      <!--       <confirmed-cases-details-card /> -->
       <!--       <confirmed-cases-details-card /> -->
       <!-- 陽性患者数 -->
       <!--       <confirmed-cases-number-card /> -->
@@ -71,7 +74,7 @@ import StaticInfo from '@/components/StaticInfo.vue'
 import CardRow from '@/components/cards/CardRow.vue'
 import CitiesCard from '@/components/cards/CitiesCard.vue'
 import IbarakiGraphicalMapCard from '@/components/cards/IbarakiGraphicalMapCard.vue'
-import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsCard.vue'
+// import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsCard.vue'
 
 // import AgeCard from '@/components/cards/AgeCard.vue'
 // import ConfirmedCasesNumberCard from '@/components/cards/ConfirmedCasesNumberCard.vue'
@@ -86,6 +89,7 @@ import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsC
 import AgencyCard from '@/components/cards/AgencyCard.vue'
 import AgencyCard2 from '@/components/cards/AgencyCard2.vue'
 import AgencyCard3 from '@/components/cards/AgencyCard3.vue'
+import AgencyCard4 from '@/components/cards/AgencyCard4.vue'
 import { convertDatetimeToISO8601Format } from '@/utils/formatDate'
 
 export default Vue.extend({
@@ -95,7 +99,7 @@ export default Vue.extend({
     CardRow,
     CitiesCard,
     IbarakiGraphicalMapCard,
-    ConfirmedCasesDetailsCard,
+    //     ConfirmedCasesDetailsCard,
     //     AgeCard,
     //     WhatsNew,
     //     ConfirmedCasesNumberCard,
@@ -109,6 +113,7 @@ export default Vue.extend({
     //     MetroCard,
     AgencyCard2,
     AgencyCard3,
+    AgencyCard4,
     AgencyCard
   },
   data() {

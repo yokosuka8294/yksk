@@ -1,5 +1,6 @@
 data/*.sh
 data/*.php
+data/*.txt
 data/twitte*
 master.sh
 dev-master.sh

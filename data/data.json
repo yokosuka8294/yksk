@@ -1,5 +1,5 @@
 {
-    "lastUpdate": "2020\/5\/3",
+    "lastUpdate": "2020\/5\/4",
     "\/\/ 3": "陽性患者属性",
     "patients": {
         "date": "2020\/5\/1",
@@ -1182,16 +1182,16 @@
         "children": [
             {
                 "attr": "陽性患者数",
-                "date": "2020\/5\/3",
-                "value": 401,
+                "date": "2020\/5\/4",
+                "value": 407,
                 "children": [
                     {
                         "attr": "入院",
-                        "value": 2,
+                        "value": 1,
                         "children": [
                             {
                                 "attr": "軽症・中等症",
-                                "value": 276
+                                "value": 281
                             },
                             {
                                 "attr": "重症",
@@ -1201,7 +1201,7 @@
                     },
                     {
                         "attr": "死亡",
-                        "value": 20
+                        "value": 22
                     },
                     {
                         "attr": "退院",

@@ -4,10 +4,10 @@
 today=$(date "+%Y%m%d");
 echo "${today} php update...";
 
-#php update.php
+php update.php
 
 # if update.txt exist
-#if [[ -f ./update.txt ]]; then
+if [[ -f ./update.txt ]]; then
 
 	echo 'git pull';
 	git pull;
@@ -33,7 +33,7 @@ echo "${today} php update...";
 	echo "wait 5min for tweet...";
 	sleep 300;
 
-#	php tweet.php
+	php tweet.php
 
-#	rm update.txt
-#fi
+	rm update.txt
+fi

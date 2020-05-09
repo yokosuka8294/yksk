@@ -15,14 +15,14 @@
         <table class="regend-table">
           <tbody>
             <tr>
-              <td><span class="color-test infected-level1" />1-5</td>
-              <td><span class="color-test infected-level2" />6-10</td>
-              <td><span class="color-test infected-level3" />11-15</td>
+              <td><span class="color-test infected-level1" />1-10</td>
+              <td><span class="color-test infected-level2" />10-20</td>
+              <td><span class="color-test infected-level3" />20-30</td>
             </tr>
             <tr>
-              <td><span class="color-test infected-level4" />16-20</td>
-              <td><span class="color-test infected-level5" />21-30</td>
-              <td><span class="color-test infected-level6" />31-</td>
+              <td><span class="color-test infected-level4" />30-40</td>
+              <td><span class="color-test infected-level5" />40-50</td>
+              <td><span class="color-test infected-level6" />51-</td>
             </tr>
           </tbody>
         </table>
@@ -67,15 +67,15 @@ export default {
       const targetElement = document.getElementById(
         'ibaraki-map_svg__' + element.Romaji
       )
-      if (cityPatientsNumber[element.city] <= 5)
+      if (cityPatientsNumber[element.city] <= 10)
         targetElement.classList.add('infected-level1')
-      else if (cityPatientsNumber[element.city] <= 10)
-        targetElement.classList.add('infected-level2')
-      else if (cityPatientsNumber[element.city] <= 15)
-        targetElement.classList.add('infected-level3')
       else if (cityPatientsNumber[element.city] <= 20)
-        targetElement.classList.add('infected-level4')
+        targetElement.classList.add('infected-level2')
       else if (cityPatientsNumber[element.city] <= 30)
+        targetElement.classList.add('infected-level3')
+      else if (cityPatientsNumber[element.city] <= 40)
+        targetElement.classList.add('infected-level4')
+      else if (cityPatientsNumber[element.city] <= 50)
         targetElement.classList.add('infected-level5')
       else targetElement.classList.add('infected-level6')
     })
@@ -93,12 +93,12 @@ export default {
 </style>
 <!-- 本来ならばSVGをinline展開してそこに限定してcssを適用するべきだが、inline展開ができなかったため妥協 -->
 <style lang="scss">
-$infected-level1: #ccfbcc;
-$infected-level2: #88f2a9;
-$infected-level3: #44e5b7;
-$infected-level4: #00c1d5;
-$infected-level5: #004da5;
-$infected-level6: #000072;
+$infected-level1: #faf0eb;
+$infected-level2: #e7c1be;
+$infected-level3: #cf91a3;
+$infected-level4: #a9688f;
+$infected-level5: #774577;
+$infected-level6: #302041;
 
 td {
   font-size: 0.9em;

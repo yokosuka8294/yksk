@@ -1,9 +1,4 @@
-data/*.sh
-data/*.php
-data/*.txt
-data/twitte*
-master.sh
-dev-master.sh
+data/tweet*
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template

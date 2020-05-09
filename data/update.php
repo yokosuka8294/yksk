@@ -1,53 +1,137 @@
 <?php
 
-error_reporting(E_ALL & ~E_NOTICE);
-
 #
 #
-# update php script. update data.json
+# update .json
 # $ php update.php
 #
 #
 
+# error control
+error_reporting(E_ALL & ~E_NOTICE);
+
 # timezone
 date_default_timezone_set('Asia/Tokyo');
 
-# Define
+# const
 const _SRC_URL = 'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html';
 const _SRC_DATA_JSON = 'data.json';
 const _SRC_PATIENT_DISTRICT_JSON = 'agency.json';
 const _SRC_PATIENT_STATUS_JSON = 'agency2.json';
-const _UPDATE_AWARE_FILE = 'update.txt';
 const _SRC_PATIENT_DETAIL_JSON = 'agency3.json';
+const _UPDATE_AWARE_FILE = 'update.txt';
 
-
-
-
-#
-# update flag
-#
-
-$update = false;
-
-
-
-#
-# Get Yokohama html
-#
-
+# global
+$twitter_comment = '';
 $html = file_get_contents(_SRC_URL);
 
-# Get last update date
-preg_match("|最終更新日 ([0-9]+)年([0-9]+)月([0-9]+)日|us",$html,$match);
 
-$lastUpDate['y'] = $match[1];
-$lastUpDate['m'] = $match[2];
-$lastUpDate['d'] = $match[3];
-$lastUpDate['ymd'] = $match[1].'/'.$match[2].'/'.$match[3];
+
+patients_status_trend();
+
+echo "$twitter_comment";
+
+exit;
+
+
+
+#
+# patients status trend
+#
+
+function patients_status_trend()
+{
+    # get html of yokohama web site
+    $html = $GLOBALS['html'];
+
+    # last update
+    preg_match("|陽性患者の状況（([0-9]+)月([0-9]+)日時点）|us",$html,$match);
+    $positive_patiant['date'] = date("Y").'/'.$match[1].'/'.$match[2];  // 2020/4/28
+    $positive_patiant['md']   = $match[1].'/'.$match[2];  // 4/28
+
+    # make number
+    preg_match("|<caption>陽性患者の状況</caption>(.*?)</table><br>|us",$html,$match);
+    preg_match_all("|>(\d+?)人|us",$match[1],$match2);
+    preg_match_all("|row\">(.+?)<|us",$match[1],$match3);
+    foreach( $match3[1] as $key => $val)
+        $positive_patiant[$val] = (int)$match2[1][$key];
+    $positive_patiant['無症状から中等症'] = $positive_patiant['無症状'] + $positive_patiant['軽症'] + $positive_patiant['中等症'];
+
+    # get array from json url
+    $data_json_arr = jsonUrl2array(_SRC_PATIENT_STATUS_JSON);
+
+    # if unmatch last update betweem json and web
+    if($positive_patiant['date'] != $data_json_arr['date'])
+    {
+        # add twitter comment
+        $GLOBALS['twitter_comment'] .= "　・横浜市 陽性患者数、状況\n";
+
+        # date update for agency2.json
+        $data_json_arr['date'] = $positive_patiant['date'];
+        $data_json_arr['labels'][] = $positive_patiant['md'];
+        $data_json_arr['datasets'][0]['data'][] = $positive_patiant['無症状から中等症'];
+        $data_json_arr['datasets'][1]['data'][] = $positive_patiant['重症'];
+        $data_json_arr['datasets'][2]['data'][] = $positive_patiant['死亡'];
+        $data_json_arr['datasets'][3]['data'][] = $positive_patiant['退院等'];
+        $data_json_arr['datasets'][4]['data'][] = $positive_patiant['調査中'];
+
+        # write to json file
+        arr2writeJson($data_json_arr, _SRC_PATIENT_STATUS_JSON);
+
+        # echo
+        echo "update agency2.json: positive number\n";
+    }
+    else
+    {
+        echo "___no update agency2.json: positive number\n";
+    }
+
+
+}
+
+
+
+
+
+#
+# jsonUrl2array
+#
+
+function jsonUrl2array($json_url)
+{
+    $json  = file_get_contents($json_url);
+    return json_decode($json, true);
+}
+
+
+
+#
+# arr2writeJson
+#
+
+function arr2writeJson($arr,$json_url)
+{
+    $json = json_encode($arr, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
+    file_put_contents($json_url, $json);
+}
+
+
+//
+// #
+// # Get Yokohama html
+// #
+//
+//
+// # Get last update date
+// preg_match("|最終更新日 ([0-9]+)年([0-9]+)月([0-9]+)日|us",$html,$match);
+//
+// $lastUpDate['y'] = $match[1];
+// $lastUpDate['m'] = $match[2];
+// $lastUpDate['d'] = $match[3];
+// $lastUpDate['ymd'] = $match[1].'/'.$match[2].'/'.$match[3];
 
 # get patients csv
 preg_match("|<a class=\"csv\" href=\"(.*?)\">陽性患者の発生状況のオープンデータ|us",$html,$match);
-
 $_SRC_CSV_URL = "https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/".$match[1];
 
 
@@ -57,20 +141,13 @@ $_SRC_CSV_URL = "https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topic
 # Existing data
 #
 
-# data.json
-$data_json       = file_get_contents(_SRC_DATA_JSON);
-$data_arr_exist  = json_decode($data_json, true);
-$data_arr_update = $data_arr_exist;
+
+
 
 # agency.json
 $patient_district_json       = file_get_contents(_SRC_PATIENT_DISTRICT_JSON);
 $patient_district_arr_exist  = json_decode($patient_district_json, true);
 $patient_district_arr_update = $patient_district_arr_exist;
-
-# agency2.json
-$patient_status_json       = file_get_contents(_SRC_PATIENT_STATUS_JSON);
-$patient_status_arr_exist  = json_decode($patient_status_json, true);
-$patient_status_arr_update = $patient_status_arr_exist;
 
 # agency3.json
 $patient_detail_json       = file_get_contents(_SRC_PATIENT_DETAIL_JSON);
@@ -124,26 +201,6 @@ foreach( $csv as $key => $line)
 
 
 
-#
-# Make data of Positive Patients 陽性患者の状況（4月28日時点）
-#
-
-# extract html
-preg_match("|陽性患者の状況（([0-9]+)月([0-9]+)日時点）|us",$html,$match);
-
-# extract date
-$positive_patiant['date'] = $lastUpDate['y'].'/'.$match[1].'/'.$match[2];  // 2020/4/28
-$positive_patiant['md']   = $match[1].'/'.$match[2];  // 4/28
-
-# extract number
-preg_match("|<caption>陽性患者の状況</caption>(.*?)</table><br>|us",$html,$match);
-preg_match_all("|>(\d+?)人|us",$match[1],$match2);
-preg_match_all("|row\">(.+?)<|us",$match[1],$match3);
-
-foreach( $match3[1] as $key => $val)
-    $positive_patiant[$val] = (int)$match2[1][$key];
-
-$positive_patiant['無症状から中等症'] = $positive_patiant['無症状'] + $positive_patiant['軽症'] + $positive_patiant['中等症'];
 
 
 
@@ -155,7 +212,7 @@ $positive_patiant['無症状から中等症'] = $positive_patiant['無症状'] +
 preg_match("|区別発生状況（患者所在地）（([0-9]+)月([0-9]+)日時点）|us",$html,$match_district);
 
 # extract date
-$patient_district['date'] = $lastUpDate['y'].'/'.$match_district[1].'/'.$match_district[2];  // 2020/4/28
+$patient_district['date'] = date("Y").'/'.$match_district[1].'/'.$match_district[2];  // 2020/4/28
 $patient_district['md']   = $match_district[1].'/'.$match_district[2];  // 4/28
 
 # extract number
@@ -244,32 +301,9 @@ foreach( $patient_status as $status_label => $status_arr)
 # if unmatch last update
 if($positive_patiant['date'] != $data_arr_exist['main_summary']['children'][0]['date'])
 {
-    # wite json
-    $update = true;
-
     # add twitter comment
     $twitter_comment .= '　・横浜市 陽性患者数、状況
 ';
-
-    # date update for data.json
-    $data_arr_update['main_summary']['children'][0]['date']  = $positive_patiant['date'];
-    $data_arr_update['main_summary']['children'][0]['value'] = $positive_patiant['陽性患者数'];
-    $data_arr_update['main_summary']['children'][0]['children'][0]['value'] = $positive_patiant['調査中'];
-    $data_arr_update['main_summary']['children'][0]['children'][0]['children'][0]['value'] = $positive_patiant['無症状から中等症'];
-    $data_arr_update['main_summary']['children'][0]['children'][0]['children'][1]['value'] = $positive_patiant['重症'];
-    $data_arr_update['main_summary']['children'][0]['children'][1]['value'] = $positive_patiant['死亡'];
-    $data_arr_update['main_summary']['children'][0]['children'][2]['value'] = $positive_patiant['退院等'];
-
-    # date update for agency2.json
-    $patient_status_arr_update['date'] = $positive_patiant['date'];
-    $patient_status_arr_update['labels'][] = $positive_patiant['md'];
-    $patient_status_arr_update['datasets'][0]['data'][] = $positive_patiant['無症状から中等症'];
-    $patient_status_arr_update['datasets'][1]['data'][] = $positive_patiant['重症'];
-    $patient_status_arr_update['datasets'][2]['data'][] = $positive_patiant['死亡'];
-    $patient_status_arr_update['datasets'][3]['data'][] = $positive_patiant['退院等'];
-    $patient_status_arr_update['datasets'][4]['data'][] = $positive_patiant['調査中'];
-
-
 
     #
     # update arr
@@ -313,7 +347,7 @@ if($positive_patiant['date'] != $data_arr_exist['main_summary']['children'][0]['
 if($patient_district['date'] != $patient_district_arr_exist['date'])
 {
     # wite json
-    $update = true;
+    $update_flag = true;
 
     # add twitter comment
     $twitter_comment .= '　・横浜市 区別の陽性患者数
@@ -390,14 +424,10 @@ if($patient_district['date'] != $patient_district_arr_exist['date'])
 
 
 # wite json
-if($update){
+if($update_flag){
 
-    # update date
-    $data_arr_update['lastUpdate'] = $lastUpDate['ymd'];
 
-    # write data.json
-    $data_json = json_encode($data_arr_update, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
-    file_put_contents(_SRC_DATA_JSON, $data_json);
+
 
     # write agency2.json
     $patient_status_json = json_encode($patient_status_arr_update, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);

@@ -7,6 +7,9 @@
 #
 #
 
+error_reporting(E_ALL & ~E_NOTICE);
+
+
 # timezone
 date_default_timezone_set('Asia/Tokyo');
 

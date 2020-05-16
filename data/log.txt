@@ -1794,3 +1794,131 @@ ___no update agency4.json: pcr
 git pull
 
 git add .
+
+git tag -d 
+
+git merge -m 
+[master 9518f3093] auto update
+
+git push
+
+wait 5min for tweet...
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200516 php update...
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr

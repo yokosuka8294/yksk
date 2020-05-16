@@ -1922,3 +1922,13 @@ ___no update agency.json: district rank
 ___no update agency.json: district stack
 ___no update data.json: map
 ___no update agency4.json: pcr
+20200516 php update...
+update agency2.json: positive number
+update agency3.json: age
+update agency.json: district rank
+___no update agency.json: district stack
+update data.json: map
+update agency4.json: pcr
+git pull
+
+git add .

@@ -201,7 +201,7 @@ function make_tweet_txt()
 {
     if($GLOBALS['twitter_comment'] != ''){
 
-        $tweet_txt = "データを更新しました：
+        $tweet_txt = "更新：
 {$GLOBALS['twitter_comment']}
 #横浜市 #新型コロナ
 #COVID19 #yokohama

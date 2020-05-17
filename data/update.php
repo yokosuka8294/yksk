@@ -23,12 +23,17 @@ const _SRC_PATIENT_NUM_TREND_JSON   = 'agency2.json';
 const _SRC_PATIENT_AGE_JSON         = 'agency3.json';
 const _SRC_PCR_JSON                 = 'agency4.json';
 const _UPDATE_AWARE_FILE            = 'update.txt';
+const _SRC_PATIENT_PER_DAY_JSON     = 'agency5.json';
+const _PATIENT_PER_DAY_DISP_NUM     = 20;
+
+
 
 # global
 $twitter_comment = '';
 $html = file_get_contents(_SRC_URL);
 
 # update json
+update_patients_per_day_bar();
 update_patients_num_trend();
 update_patients_age_bar();
 update_district_rank_bar();
@@ -43,6 +48,92 @@ make_tweet_txt();
 exit;
 
 
+
+
+
+
+
+#
+# update_patients_per_day_bar
+#
+
+function update_patients_per_day_bar()
+{
+    # get_patient_arr_from_web_csv
+    $patient_arr = get_patient_arr_from_web_csv();
+
+
+    # count patient age, status
+    foreach( $patient_arr['公表日'] as $arr_num => $pub_date )
+    {
+        # patient status
+        $patient_status = $patient_arr['患者_状態'][$arr_num];
+
+        # change label
+        if( $patient_status == '無症状' ) $patient_status = '無症状-中等症';
+        elseif( $patient_status == '軽症' ) $patient_status = '無症状-中等症';
+        elseif( $patient_status == '中等症' ) $patient_status = '無症状-中等症';
+
+        # count patient status
+        $pub_date_arr[$pub_date][$patient_status]++;
+    }
+
+
+    # data construction cange for output
+    $counter_pub_date_arr2 = 0;
+
+    $pub_date_arr2['datasets'][]['label'] = '無症状-中等症';
+    $pub_date_arr2['datasets'][]['label'] = '重症';
+    $pub_date_arr2['datasets'][]['label'] = '死亡';
+    $pub_date_arr2['datasets'][]['label'] = '退院';
+    $pub_date_arr2['datasets'][]['label'] = '調査中';
+
+    foreach( $pub_date_arr as $pub_date_key => $pub_date_val)
+    {
+        $pub_date_arr2['labels'][] = date('n/j', strtotime($pub_date_key));
+
+        foreach( $pub_date_val as $pub_date_val_key => $pub_date_val_val)
+            foreach( $pub_date_arr2['datasets'] as $pub_date_arr2_k => $pub_date_arr2_val)
+                if($pub_date_val_key == $pub_date_arr2_val['label'])
+                    $pub_date_arr2['datasets'][$pub_date_arr2_k]['data'][$counter_pub_date_arr2] = $pub_date_val_val;
+
+        $counter_pub_date_arr2++;
+    }
+
+    foreach( $pub_date_arr2['labels'] as $key => $date)
+        foreach( $pub_date_arr2['datasets'] as $dataset_key => $dataset)
+            if( $dataset['data'][$key]=='' )
+                $pub_date_arr2['datasets'][$dataset_key]['data'][$key] = 0;
+
+    ksort($pub_date_arr2['datasets'][0]['data']);
+    ksort($pub_date_arr2['datasets'][1]['data']);
+    ksort($pub_date_arr2['datasets'][2]['data']);
+    ksort($pub_date_arr2['datasets'][3]['data']);
+    ksort($pub_date_arr2['datasets'][4]['data']);
+
+
+    # get_patient_num_arr_from_web : want to use date
+    $positive_patiant = get_patient_num_arr_from_web();
+
+    # get array from json url
+    $data_json_arr = jsonUrl2array(_SRC_PATIENT_PER_DAY_JSON);
+
+    # if unmatch last update betweem json and web
+    if($positive_patiant['ymd'] != $data_json_arr['date'])
+    {
+        $pub_date_arr2['date'] = $positive_patiant['ymd'];
+
+        # write to json file
+        arr2writeJson($pub_date_arr2, _SRC_PATIENT_PER_DAY_JSON);
+
+        # echo
+        echo "update agency5.json: per day positive\n";
+    }
+    else
+    {
+        echo "___no update agency5.json: per day positive\n";
+    }
+}
 
 
 
@@ -201,7 +292,7 @@ function make_tweet_txt()
 {
     if($GLOBALS['twitter_comment'] != ''){
 
-        $tweet_txt = "データを更新しました：
+        $tweet_txt = "更新：
 {$GLOBALS['twitter_comment']}
 #横浜市 #新型コロナ
 #COVID19 #yokohama
@@ -597,7 +688,7 @@ function update_patients_num_trend()
     if($positive_patiant['ymd'] != $data_json_arr['date'])
     {
         # add twitter comment
-        $GLOBALS['twitter_comment'] .= "　・陽性患者数の推移({$positive_patiant['md']}時点)\n";
+        $GLOBALS['twitter_comment'] .= "　・陽性患者の発生状況({$positive_patiant['md']}時点)\n";
 
         # date update for agency2.json
         $data_json_arr['date'] = $positive_patiant['ymd'];

@@ -19,8 +19,11 @@
       :text="$t('横浜市発表の新型コロナウイルス感染症に関する最新情報はこちら')"
     />
     <card-row class="DataBlock">
-      <!-- 陽性患者状況 -->
+      <!-- 陽性患者状況(累計) -->
       <agency-card2 />
+
+      <!-- 陽性患者状況(日ごと) -->
+      <agency-card5 />
 
       <!-- 年齢 -->
       <agency-card3 />
@@ -90,6 +93,7 @@ import AgencyCard from '@/components/cards/AgencyCard.vue'
 import AgencyCard2 from '@/components/cards/AgencyCard2.vue'
 import AgencyCard3 from '@/components/cards/AgencyCard3.vue'
 import AgencyCard4 from '@/components/cards/AgencyCard4.vue'
+import AgencyCard5 from '@/components/cards/AgencyCard5.vue'
 import { convertDatetimeToISO8601Format } from '@/utils/formatDate'
 
 export default Vue.extend({
@@ -114,6 +118,7 @@ export default Vue.extend({
     AgencyCard2,
     AgencyCard3,
     AgencyCard4,
+    AgencyCard5,
     AgencyCard
   },
   data() {

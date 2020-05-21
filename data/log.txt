@@ -1202,3 +1202,322 @@ git pull
 Already up-to-date.
 
 git add .
+
+git tag -d 
+Deleted tag 'master-2020-02-04' (was e9bbcd807)
+
+git merge -m 
+[master bd7ba9161] auto update
+ 6 files changed, 399 insertions(+), 36 deletions(-)
+
+git push
+
+wait 5min for tweet...
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200520 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+___no update agency5.json: per day positive
+___no update agency2.json: positive number
+___no update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+20200521 php update...
+update agency5.json: per day positive
+update agency2.json: positive number
+update agency3.json: age
+___no update agency.json: district rank
+___no update agency.json: district stack
+___no update data.json: map
+___no update agency4.json: pcr
+git pull
+Already up-to-date.
+
+git add .

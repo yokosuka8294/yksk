@@ -34,6 +34,9 @@
       <!-- 区別の検査陽性者 -->
       <cities-card />
 
+      <!-- 区別の検査陽性者 -->
+      <cities-card2 />
+
       <!-- PCR検査数 -->
       <agency-card4 />
 
@@ -76,6 +79,7 @@ import StaticInfo from '@/components/StaticInfo.vue'
 
 import CardRow from '@/components/cards/CardRow.vue'
 import CitiesCard from '@/components/cards/CitiesCard.vue'
+import CitiesCard2 from '@/components/cards/CitiesCard2.vue'
 import IbarakiGraphicalMapCard from '@/components/cards/IbarakiGraphicalMapCard.vue'
 // import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsCard.vue'
 
@@ -102,6 +106,7 @@ export default Vue.extend({
     StaticInfo,
     CardRow,
     CitiesCard,
+    CitiesCard2,
     IbarakiGraphicalMapCard,
     //     ConfirmedCasesDetailsCard,
     //     AgeCard,

@@ -101,3 +101,5 @@ ogp/*
 
 # Vagrant
 .vagrant
+data/log.txt
+data/update.txt

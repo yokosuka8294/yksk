@@ -141,7 +141,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     return {
       canvas: true,
       chartData: citiesData,
-      date: Data.cities.date,
+      date: Data.cities2.date,
       cities
     }
   },

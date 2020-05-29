@@ -18,13 +18,14 @@ const _SRC_URL = 'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topi
 const _SRC_LASTUPDATE_JSON          = 'data.json';
 const _SRC_DISTRICT_MAP_JSON        = 'data.json';
 const _SRC_DISTRICT_RANK_JSON       = 'data.json';
+const _SRC_DISTRICT_POPULATION_JSON = 'data.json';
 const _SRC_DISTRICT_STACK_JSON      = 'agency.json';
 const _SRC_PATIENT_NUM_TREND_JSON   = 'agency2.json';
 const _SRC_PATIENT_AGE_JSON         = 'agency3.json';
 const _SRC_PCR_JSON                 = 'agency4.json';
 const _UPDATE_AWARE_FILE            = 'update.txt';
 const _SRC_PATIENT_PER_DAY_JSON     = 'agency5.json';
-const _PATIENT_PER_DAY_DISP_NUM     = 20;
+// const _PATIENT_PER_DAY_DISP_NUM     = 20;
 
 
 
@@ -33,6 +34,7 @@ $twitter_comment = '';
 $html = file_get_contents(_SRC_URL);
 
 # update json
+// update_district_population_ratio();
 update_patients_per_day_bar();
 update_patients_num_trend();
 update_patients_age_bar();
@@ -40,13 +42,60 @@ update_district_rank_bar();
 update_district_stack_bar();
 update_district_map();
 update_pcr_num();
-
-# make tweet txt
+//
+// # make tweet txt
 make_tweet_txt();
 
 
 exit;
 
+
+
+#
+# update_district_population_ratio
+#
+
+function update_district_population_ratio()
+{
+    # get_patient_district_arr_from_web
+    $patient_district = get_patient_district_arr_from_web();
+
+    # get array from json url
+    $data_json_arr = jsonUrl2array(_SRC_DISTRICT_POPULATION_JSON);
+
+    # if unmatch last update
+    if($patient_district['ymd'] != $data_json_arr['cities2']['date'])
+    {
+        # date update for data.json->cities
+        $data_json_arr['cities']['date'] = $patient_district['ymd'];
+        foreach( $patient_district as $k => $v )
+        {
+            # if district
+            if(is_numeric($v))
+            {
+                $only_district_arr[$k] = (int)$v;
+            }
+        }
+        arsort($only_district_arr);
+        $data_json_arr['cities']['data']['labels'] = [];
+        $data_json_arr['cities']['data']['datasets'][0]['data'] = [];
+        foreach( $only_district_arr as $k => $v )
+        {
+            $data_json_arr['cities']['data']['labels'][] = $k;
+            $data_json_arr['cities']['data']['datasets'][0]['data'][] = $v;
+        }
+
+        # write to json file
+        arr2writeJson($data_json_arr, _SRC_DISTRICT_RANK_JSON);
+
+        # echo
+        echo "update agency.json: district rank\n";
+    }
+    else
+    {
+        echo "___no update agency.json: district rank\n";
+    }
+}
 
 
 
@@ -90,7 +139,7 @@ function update_patients_per_day_bar()
 
     foreach( $pub_date_arr as $pub_date_key => $pub_date_val)
     {
-        $pub_date_arr2['labels'][] = date('n/j', strtotime($pub_date_key));
+        $pub_date_arr2['labels'][] = date('m/d', strtotime($pub_date_key));
 
         foreach( $pub_date_val as $pub_date_val_key => $pub_date_val_val)
             foreach( $pub_date_arr2['datasets'] as $pub_date_arr2_k => $pub_date_arr2_val)
@@ -266,7 +315,7 @@ function update_pcr_num()
 
         # date update for json
         $data_json_arr['date']      = $lastUpDate['ymd'];
-        $data_json_arr['labels'][]  = $lastUpDate['md'];
+        $data_json_arr['labels'][]  = date('m/d', strtotime($lastUpDate['md']));
         $data_json_arr['datasets'][0]['data'][] = $pcr_num - $pcr_date_positive_sum;
         $data_json_arr['datasets'][1]['data'][] = $pcr_date_positive_sum;
 
@@ -338,7 +387,7 @@ function update_district_map()
     if($patient_district['ymd'] != $data_json_arr['patients']['date'])
     {
         # add twitter comment
-        $GLOBALS['twitter_comment'] .= "　・区別 ヒートマップ({$patient_district['md']}時点)\n";
+//         $GLOBALS['twitter_comment'] .= "　・区別 ヒートマップ({$patient_district['md']}時点)\n";
 
         # date update for data.json->patients
         $data_json_arr['patients']['date'] = $patient_district['ymd'];
@@ -439,7 +488,7 @@ function update_patients_age_bar()
     if($positive_patiant['ymd'] != $data_json_arr['date'])
     {
         # add twitter comment
-        $GLOBALS['twitter_comment'] .= "　・患者年代別 陽性確定時の症状({$positive_patiant['md']}時点)\n";
+//         $GLOBALS['twitter_comment'] .= "　・患者年代別 陽性確定時の症状({$positive_patiant['md']}時点)\n";
 
         # update date
         $data_json_arr['date'] = $positive_patiant['ymd'];
@@ -603,11 +652,11 @@ function update_district_stack_bar()
     if($patient_district['ymd'] != $data_json_arr['date'])
     {
         # add twitter comment
-        $GLOBALS['twitter_comment'] .= "　・区別 陽性患者数の推移({$patient_district['md']}時点)\n";
+//         $GLOBALS['twitter_comment'] .= "　・区別 陽性患者数の推移({$patient_district['md']}時点)\n";
 
         # date update for agency.json
         $data_json_arr['date']     = $patient_district['ymd'];
-        $data_json_arr['labels'][] = $patient_district['md'];
+        $data_json_arr['labels'][] = date('m/d', strtotime($patient_district['md']));
         $data_json_arr['datasets'][0]['data'][] = $patient_district['鶴見区'];
         $data_json_arr['datasets'][1]['data'][] = $patient_district['神奈川区'];
         $data_json_arr['datasets'][2]['data'][] = $patient_district['西区'];
@@ -688,11 +737,11 @@ function update_patients_num_trend()
     if($positive_patiant['ymd'] != $data_json_arr['date'])
     {
         # add twitter comment
-        $GLOBALS['twitter_comment'] .= "　・陽性患者の発生状況({$positive_patiant['md']}時点)\n";
+        $GLOBALS['twitter_comment'] .= "　・陽性患者数({$positive_patiant['md']}時点)\n";
 
         # date update for agency2.json
         $data_json_arr['date'] = $positive_patiant['ymd'];
-        $data_json_arr['labels'][] = $positive_patiant['md'];
+        $data_json_arr['labels'][] = date('m/d', strtotime($positive_patiant['md']));
         $data_json_arr['datasets'][0]['data'][] = $positive_patiant['無症状から中等症'];
         $data_json_arr['datasets'][1]['data'][] = $positive_patiant['重症'];
         $data_json_arr['datasets'][2]['data'][] = $positive_patiant['死亡'];

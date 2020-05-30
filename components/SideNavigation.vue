@@ -57,7 +57,7 @@
       <footer class="SideNavigation-Footer">
         <div class="SideNavigation-Social">
           <a
-            href="https://twitter.com/yokohama_koho"
+            href="https://twitter.com/covid19yokohama"
             target="_blank"
             rel="noopener noreferrer"
             class="SideNavigation-SocialLink"

@@ -27,6 +27,28 @@ const _UPDATE_AWARE_FILE            = 'update.txt';
 const _SRC_PATIENT_PER_DAY_JSON     = 'agency5.json';
 // const _PATIENT_PER_DAY_DISP_NUM     = 20;
 
+# 2020-05-01
+$yokohama_popuration_arr =
+    [
+        '中区' => 151604,
+        '保土ケ谷区' => 205957,
+        '南区' => 196340,
+        '戸塚区' => 281078,
+        '旭区' => 245170,
+        '栄区' => 119810,
+        '泉区' => 152005,
+        '港北区' => 355840,
+        '港南区' => 213860,
+        '瀬谷区' => 121744,
+        '磯子区' => 166752,
+        '神奈川区' => 246275,
+        '緑区' => 182957,
+        '西区' => 104607,
+        '都筑区' => 213257,
+        '金沢区' => 197892,
+        '青葉区' => 311361,
+        '鶴見区' => 293958
+    ];
 
 
 # global
@@ -34,17 +56,17 @@ $twitter_comment = '';
 $html = file_get_contents(_SRC_URL);
 
 # update json
-// update_district_population_ratio();
-update_patients_per_day_bar();
-update_patients_num_trend();
-update_patients_age_bar();
-update_district_rank_bar();
-update_district_stack_bar();
-update_district_map();
-update_pcr_num();
+update_district_population_ratio();
+// update_patients_per_day_bar();
+// update_patients_num_trend();
+// update_patients_age_bar();
+// update_district_rank_bar();
+// update_district_stack_bar();
+// update_district_map();
+// update_pcr_num();
 //
 // # make tweet txt
-make_tweet_txt();
+// make_tweet_txt();
 
 
 exit;
@@ -67,33 +89,48 @@ function update_district_population_ratio()
     if($patient_district['ymd'] != $data_json_arr['cities2']['date'])
     {
         # date update for data.json->cities
-        $data_json_arr['cities']['date'] = $patient_district['ymd'];
+        $data_json_arr['cities2']['date'] = $patient_district['ymd'];
         foreach( $patient_district as $k => $v )
         {
             # if district
             if(is_numeric($v))
+                if($k != '市外')
+                    $only_district_arr[$k] = (int)$v;
+        }
+
+        # calc positive numvber / 100k
+        foreach( $only_district_arr as $ku => $positive_num)
+        {
+            foreach( $GLOBALS['yokohama_popuration_arr'] as $ku2 => $population )
             {
-                $only_district_arr[$k] = (int)$v;
+                if($ku == $ku2)
+                {
+                    $a = $positive_num/$population*100000;
+                    $positive_per_popuration_arr[$ku] = (int)$a;
+                    break;
+                }
             }
         }
-        arsort($only_district_arr);
-        $data_json_arr['cities']['data']['labels'] = [];
-        $data_json_arr['cities']['data']['datasets'][0]['data'] = [];
-        foreach( $only_district_arr as $k => $v )
+
+        arsort($positive_per_popuration_arr);
+
+        $data_json_arr['cities2']['data']['labels'] = [];
+        $data_json_arr['cities2']['data']['datasets'][0]['data'] = [];
+        foreach( $positive_per_popuration_arr as $k => $v )
         {
-            $data_json_arr['cities']['data']['labels'][] = $k;
-            $data_json_arr['cities']['data']['datasets'][0]['data'][] = $v;
+            $data_json_arr['cities2']['data']['labels'][] = $k;
+            $data_json_arr['cities2']['data']['datasets'][0]['data'][] = $v;
         }
 
         # write to json file
-        arr2writeJson($data_json_arr, _SRC_DISTRICT_RANK_JSON);
+        arr2writeJson($data_json_arr, _SRC_DISTRICT_POPULATION_JSON);
 
         # echo
-        echo "update agency.json: district rank\n";
+        echo "update data.json: district population rank\n";
     }
     else
     {
-        echo "___no update agency.json: district rank\n";
+        echo "___no update data.json: district population rank\n";
     }
 }
 

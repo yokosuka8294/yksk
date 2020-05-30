@@ -57,16 +57,16 @@ $html = file_get_contents(_SRC_URL);
 
 # update json
 update_district_population_ratio();
-// update_patients_per_day_bar();
-// update_patients_num_trend();
-// update_patients_age_bar();
-// update_district_rank_bar();
-// update_district_stack_bar();
-// update_district_map();
-// update_pcr_num();
-//
-// # make tweet txt
-// make_tweet_txt();
+update_patients_per_day_bar();
+update_patients_num_trend();
+update_patients_age_bar();
+update_district_rank_bar();
+update_district_stack_bar();
+update_district_map();
+update_pcr_num();
+
+# make tweet txt
+make_tweet_txt();
 
 
 exit;

@@ -619,7 +619,6 @@ function get_patient_arr_from_web_csv()
 
 
 
-
 #
 # update_district_rank_bar
 #
@@ -739,12 +738,17 @@ function get_patient_district_arr_from_web()
     $html = $GLOBALS['html'];
 
     # extract date
-    preg_match("|区別発生状況（患者所在地）（([0-9]+)月([0-9]+)日時点）|us",$html,$match_district);
+    preg_match("|区別発生状況（患者住所地）（([0-9０-９]+)月([0-9０-９]+)日時点）|us",$html,$match_district);
+    # 全角2半角
+    $match_district[1] = mb_convert_kana($match_district[1], "n");
+    $match_district[2] = mb_convert_kana($match_district[2], "n");
     $patient_district['ymd'] = date("Y").'/'.$match_district[1].'/'.$match_district[2];  // 2020/4/28
     $patient_district['md']   = $match_district[1].'/'.$match_district[2];  // 4/28
 
     # extract number
-    preg_match("|<span>区別発生状況（患者所在地）(.*?)<th scope=\"row\">合計</th>|us",$html,$match_district);
+    preg_match("|<span>区別発生状況（患者住所地）（(.*?)<th scope=\"row\">合計</th>|us",$html,$match_district);
+    # 全角2半角
+    $match_district[1] = mb_convert_kana($match_district[1], "n");
     preg_match_all("|>(\d+?)人|us",$match_district[1],$match_district2);
     preg_match_all("|row\">(.+?)<|us",$match_district[1],$match_district3);
     foreach( $match_district3[1] as $key => $val)

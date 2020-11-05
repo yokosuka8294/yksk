@@ -349,7 +349,7 @@
   "出典: 横浜市オープンデータポータル":"Source: Yokohama Open data portal",
   "出典: 横浜市内の陽性患者の発生状況データ":"Source: Yokohama Official Web Site",
   "無症状<br />軽症<br />中等症":"Asymptomatic/Mild to moderate symptoms",
-  "区別 陽性者人数マップ(退院含む)":"Cases Map",
+  "区別 10万人あたりの陽性者人数マップ":"Cases Map per 100,000 people",
   "陽性者数の推移":"Cases Trend by district ",
   "テーブルを表示":"Show Table",
   "市外":"Other",

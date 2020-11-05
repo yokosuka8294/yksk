@@ -56,9 +56,9 @@ $twitter_comment = '';
 $html = file_get_contents(_SRC_URL);
 
 # update json
+update_patients_num_trend();
 update_district_population_ratio();
 update_patients_per_day_bar();
-update_patients_num_trend();
 update_patients_age_bar();
 update_district_rank_bar();
 update_district_stack_bar();
@@ -423,8 +423,6 @@ function update_district_map()
     # if unmatch last update
     if($patient_district['ymd'] != $data_json_arr['patients']['date'])
     {
-        # add twitter comment
-//         $GLOBALS['twitter_comment'] .= "　・区別 ヒートマップ({$patient_district['md']}時点)\n";
 
         # date update for data.json->patients
         $data_json_arr['patients']['date'] = $patient_district['ymd'];
@@ -434,6 +432,17 @@ function update_district_map()
             # if district
             if(is_numeric($v))
             {
+                # calc positive numvber / 100k
+                foreach( $GLOBALS['yokohama_popuration_arr'] as $ku2 => $population )
+                {
+                    if($k == $ku2)
+                    {
+                        $a = $v/$population*100000;
+                        $v = (int)$a;
+                        break;
+                    }
+                }
+
                 # loop patients time
                 for($i=1;$i<=$v;$i++)
                 {
@@ -774,12 +783,12 @@ function update_patients_num_trend()
     # get array from json url
     $data_json_arr = jsonUrl2array(_SRC_PATIENT_NUM_TREND_JSON);
 
+
+
+
     # if unmatch last update betweem json and web
     if($positive_patiant['ymd'] != $data_json_arr['date'])
     {
-        # add twitter comment
-        $GLOBALS['twitter_comment'] .= "　・陽性患者数({$positive_patiant['md']}時点)\n";
-
         # date update for agency2.json
         $data_json_arr['date'] = $positive_patiant['ymd'];
         $data_json_arr['labels'][] = date('m/d', strtotime($positive_patiant['md']));
@@ -792,9 +801,27 @@ function update_patients_num_trend()
         # write to json file
         arr2writeJson($data_json_arr, _SRC_PATIENT_NUM_TREND_JSON);
 
+
+        # calc today positive num
+        $today_array_num     = count($data_json_arr['labels'])-1;
+        $yesterday_array_num = $today_array_num-1;
+
+        for($i=0;$i<5;$i++)
+        {
+            $total_till_today += $data_json_arr['datasets'][$i]['data'][$today_array_num];
+            $total_till_yesterday += $data_json_arr['datasets'][$i]['data'][$yesterday_array_num];
+        }
+
+        $today_positive_num =  $total_till_today - $total_till_yesterday;
+
+
+        # add twitter comment
+        $GLOBALS['twitter_comment'] .= "　・陽性患者数({$positive_patiant['md']}時点, +{$today_positive_num}人)\n";
+
+
         # echo
         echo "update agency2.json: positive number\n";
-    }
+        }
     else
     {
         echo "___no update agency2.json: positive number\n";

@@ -1,7 +1,7 @@
 <template>
   <v-col cols="12" md="6" class="DataCard">
     <data-view
-      :title="$t('区別 陽性者人数マップ(退院含む)')"
+      :title="$t('区別 10万人あたりの陽性者人数マップ')"
       :title-id="'ibaraki-city-map-table'"
       :date="Data.patients.date"
       :source-title="$t('横浜市内の陽性患者の発生状況データ')"
@@ -15,14 +15,14 @@
         <table class="regend-table">
           <tbody>
             <tr>
-              <td><span class="color-test infected-level1" />0 - 50</td>
-              <td><span class="color-test infected-level2" />50 - 100</td>
-              <td><span class="color-test infected-level3" />100 - 150</td>
+              <td><span class="color-test infected-level1" />0-30</td>
+              <td><span class="color-test infected-level2" />30-60</td>
+              <td><span class="color-test infected-level3" />60-90</td>
             </tr>
             <tr>
-              <td><span class="color-test infected-level4" />150 - 200</td>
-              <td><span class="color-test infected-level5" />200 - 250</td>
-              <td><span class="color-test infected-level6" />250 -</td>
+              <td><span class="color-test infected-level4" />90-120</td>
+              <td><span class="color-test infected-level5" />120-150</td>
+              <td><span class="color-test infected-level6" />150-</td>
             </tr>
           </tbody>
         </table>
@@ -67,15 +67,15 @@ export default {
       const targetElement = document.getElementById(
         'ibaraki-map_svg__' + element.Romaji
       )
-      if (cityPatientsNumber[element.city] <= 50)
+      if (cityPatientsNumber[element.city] <= 30)
         targetElement.classList.add('infected-level1')
-      else if (cityPatientsNumber[element.city] <= 100)
+      else if (cityPatientsNumber[element.city] <= 60)
         targetElement.classList.add('infected-level2')
-      else if (cityPatientsNumber[element.city] <= 150)
+      else if (cityPatientsNumber[element.city] <= 90)
         targetElement.classList.add('infected-level3')
-      else if (cityPatientsNumber[element.city] <= 200)
+      else if (cityPatientsNumber[element.city] <= 120)
         targetElement.classList.add('infected-level4')
-      else if (cityPatientsNumber[element.city] <= 250)
+      else if (cityPatientsNumber[element.city] <= 150)
         targetElement.classList.add('infected-level5')
       else targetElement.classList.add('infected-level6')
     })

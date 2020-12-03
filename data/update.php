@@ -25,6 +25,7 @@ const _SRC_PATIENT_AGE_JSON         = 'agency3.json';
 const _SRC_PCR_JSON                 = 'agency4.json';
 const _UPDATE_AWARE_FILE            = 'update.txt';
 const _SRC_PATIENT_PER_DAY_JSON     = 'agency5.json';
+const _SRC_PATIENT_7DAYS_JSON       = 'agency6.json';
 // const _PATIENT_PER_DAY_DISP_NUM     = 20;
 
 # 2020-05-01
@@ -64,12 +65,86 @@ update_district_rank_bar();
 update_district_stack_bar();
 update_district_map();
 update_pcr_num();
+update_patients_7days();
+
 
 # make tweet txt
 make_tweet_txt();
 
 
 exit;
+
+
+
+#
+# update_patients_7days ave
+#
+
+function update_patients_7days()
+{
+
+    # get_patient_arr_from_web_csv
+    $patient_arr = get_patient_arr_from_web_csv();
+
+    # count patient per day
+    $patient_count_key_date_arr = array_count_values($patient_arr['公表日']);
+
+    # stop flag
+    $today_Ymd = date("Y-m-d");
+
+    # input zero if empty in arr
+    for($i=0;true;$i++)
+    {
+        $Ymd = date("Y-m-d", mktime(0, 0, 0, 2, 18+$i, 2020));
+
+        # inputo 0, if emputy
+        if($patient_count_key_date_arr[$Ymd]=='') $patient_count_key_date_arr[$Ymd] = 0;
+
+        # use 7week ave
+        $ymd_key_arr[] = $Ymd;
+
+        if($today_Ymd==$Ymd) break;
+    }
+    ksort($patient_count_key_date_arr);
+
+
+    # make 7 days ave
+    foreach( $ymd_key_arr as $key_num => $val_ymd )
+    {
+        # skip for 7 days
+        if($key_num<6) continue;
+
+        $seven_days_ave_arr[$val_ymd] =
+              $patient_count_key_date_arr[$ymd_key_arr[$key_num]]
+            + $patient_count_key_date_arr[$ymd_key_arr[$key_num-1]]
+            + $patient_count_key_date_arr[$ymd_key_arr[$key_num-2]]
+            + $patient_count_key_date_arr[$ymd_key_arr[$key_num-3]]
+            + $patient_count_key_date_arr[$ymd_key_arr[$key_num-4]]
+            + $patient_count_key_date_arr[$ymd_key_arr[$key_num-5]]
+            + $patient_count_key_date_arr[$ymd_key_arr[$key_num-6]];
+
+        $seven_days_ave_arr[$val_ymd] = round($seven_days_ave_arr[$val_ymd] / 7); # 四捨五入
+
+    }
+
+
+    # make json
+    foreach( $seven_days_ave_arr as $key_date => $val_num )
+    {
+        $arr_for_json['datasets'][0]['data'][] = $val_num;
+
+        list(,$key_m,$key_d) = explode('-',$key_date);
+        $arr_for_json['labels'][] = "$key_m/$key_d";
+    }
+    $arr_for_json['date'] = $key_date;
+
+
+    # write to json file
+    arr2writeJson($arr_for_json, _SRC_PATIENT_7DAYS_JSON);
+
+}
+
+
 
 
 
@@ -797,20 +872,6 @@ function update_patients_num_trend()
 
         # write to json file
         arr2writeJson($data_json_arr, _SRC_PATIENT_NUM_TREND_JSON);
-
-
- //        # calc today positive num
-//         $today_array_num     = count($data_json_arr['labels'])-1;
-//         $yesterday_array_num = $today_array_num-1;
-//
-//         for($i=0;$i<5;$i++)
-//         {
-//             $total_till_today += $data_json_arr['datasets'][$i]['data'][$today_array_num];
-//             $total_till_yesterday += $data_json_arr['datasets'][$i]['data'][$yesterday_array_num];
-//         }
-//
-//         $today_positive_num =  $total_till_today - $total_till_yesterday;
-
 
         # calc today positive num and rank
         $par_day_data_json_arr = jsonUrl2array(_SRC_PATIENT_PER_DAY_JSON);

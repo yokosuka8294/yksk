@@ -25,6 +25,9 @@
       <!-- 陽性患者状況(日ごと) -->
       <agency-card5 />
 
+      <!-- 陽性患者状況(7日移動平均) -->
+      <agency-card6 />
+
       <!-- 年齢 -->
       <agency-card3 />
 
@@ -98,6 +101,7 @@ import AgencyCard2 from '@/components/cards/AgencyCard2.vue'
 import AgencyCard3 from '@/components/cards/AgencyCard3.vue'
 import AgencyCard4 from '@/components/cards/AgencyCard4.vue'
 import AgencyCard5 from '@/components/cards/AgencyCard5.vue'
+import AgencyCard6 from '@/components/cards/AgencyCard6.vue'
 import { convertDatetimeToISO8601Format } from '@/utils/formatDate'
 
 export default Vue.extend({
@@ -124,6 +128,7 @@ export default Vue.extend({
     AgencyCard3,
     AgencyCard4,
     AgencyCard5,
+    AgencyCard6,
     AgencyCard
   },
   data() {

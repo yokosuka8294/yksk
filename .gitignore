@@ -103,3 +103,4 @@ ogp/*
 .vagrant
 data/log.txt
 data/update.txt
+data/bunseki.php

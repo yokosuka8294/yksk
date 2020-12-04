@@ -55,6 +55,7 @@ $yokohama_popuration_arr =
 # global
 $twitter_comment = '';
 $html = file_get_contents(_SRC_URL);
+$web_csv_arr = get_patient_arr_from_web_csv();
 
 # update json
 update_patients_per_day_bar();
@@ -82,9 +83,24 @@ exit;
 
 function update_patients_7days()
 {
-
     # get_patient_arr_from_web_csv
-    $patient_arr = get_patient_arr_from_web_csv();
+    $patient_arr = $GLOBALS['web_csv_arr'];
+
+    # get array from json url
+    $data_json_arr = jsonUrl2array(_SRC_PATIENT_7DAYS_JSON);
+
+    # if unmatch last update
+    $latest_date = $patient_arr['公表日'][array_key_last($patient_arr['公表日'])];
+    if($latest_date == $data_json_arr['date'])
+    {
+        echo "___no update agency7.json: 7days\n";
+        return;
+    }
+    else
+    {
+        echo "update 7days\n";
+    }
+
 
     # count patient per day
     $patient_count_key_date_arr = array_count_values($patient_arr['公表日']);
@@ -221,7 +237,7 @@ function update_district_population_ratio()
 function update_patients_per_day_bar()
 {
     # get_patient_arr_from_web_csv
-    $patient_arr = get_patient_arr_from_web_csv();
+    $patient_arr = $GLOBALS['web_csv_arr'];
 
 
     # count patient age, status
@@ -547,7 +563,7 @@ function update_district_map()
 function update_patients_age_bar()
 {
     # get_patient_arr_from_web_csv
-    $patient_arr = get_patient_arr_from_web_csv();
+    $patient_arr = $GLOBALS['web_csv_arr'];
 
     # count patient age, status
     foreach( $patient_arr['患者_状態'] as $arr_num => $status )

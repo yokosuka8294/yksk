@@ -104,8 +104,6 @@ function update_patients_7days()
     }
 
 
-exit;
-
     # count patient per day
     $patient_count_key_date_arr = array_count_values($patient_arr['公表日']);
 

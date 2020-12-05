@@ -90,7 +90,9 @@ function update_patients_7days()
     $data_json_arr = jsonUrl2array(_SRC_PATIENT_7DAYS_JSON);
 
     # if unmatch last update
-    $latest_date = $patient_arr['公表日'][array_key_last($patient_arr['公表日'])];
+//     $latest_date = $patient_arr['公表日'][array_key_last($patient_arr['公表日'])];
+    $latest_date = end($patient_arr['公表日']);
+
     if($latest_date == $data_json_arr['date'])
     {
         echo "___no update agency7.json: 7days\n";
@@ -101,6 +103,8 @@ function update_patients_7days()
         echo "update 7days\n";
     }
 
+
+exit;
 
     # count patient per day
     $patient_count_key_date_arr = array_count_values($patient_arr['公表日']);

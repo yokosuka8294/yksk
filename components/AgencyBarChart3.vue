@@ -232,7 +232,7 @@ const options: ThisTypedComponentOptionsWithRecordProps<
     },
     tableHeaders() {
       return [
-        { text: this.$t('日付'), value: 'text' },
+        { text: this.$t('年齢'), value: 'text' },
         ...this.displayData.datasets.map((text, value) => {
           return { text: text.label, value: String(value), align: 'end' }
         })

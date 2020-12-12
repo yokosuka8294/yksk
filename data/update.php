@@ -57,6 +57,7 @@ $twitter_comment = '';
 $html = file_get_contents(_SRC_URL);
 $web_csv_arr = get_patient_arr_from_web_csv();
 
+
 # update json
 update_patients_per_day_bar();
 update_patients_num_trend();
@@ -90,7 +91,6 @@ function update_patients_7days()
     $data_json_arr = jsonUrl2array(_SRC_PATIENT_7DAYS_JSON);
 
     # if unmatch last update
-//     $latest_date = $patient_arr['公表日'][array_key_last($patient_arr['公表日'])];
     $latest_date = end($patient_arr['公表日']);
 
     if($latest_date == $data_json_arr['date'])
@@ -103,28 +103,11 @@ function update_patients_7days()
         echo "update 7days\n";
     }
 
+    # get patient_count_key_date_arr
+    $patient_count_key_date_arr_s = get_patient_count_key_date_arr();
 
-    # count patient per day
-    $patient_count_key_date_arr = array_count_values($patient_arr['公表日']);
-
-    # stop flag
-    $today_Ymd = date("Y-m-d");
-
-    # input zero if empty in arr
-    for($i=0;true;$i++)
-    {
-        $Ymd = date("Y-m-d", mktime(0, 0, 0, 2, 18+$i, 2020));
-
-        # inputo 0, if emputy
-        if($patient_count_key_date_arr[$Ymd]=='') $patient_count_key_date_arr[$Ymd] = 0;
-
-        # use 7week ave
-        $ymd_key_arr[] = $Ymd;
-
-        if($today_Ymd==$Ymd) break;
-    }
-    ksort($patient_count_key_date_arr);
-
+    $patient_count_key_date_arr = $patient_count_key_date_arr_s[0];
+    $ymd_key_arr =  $patient_count_key_date_arr_s[1];
 
     # make 7 days ave
     foreach( $ymd_key_arr as $key_num => $val_ymd )
@@ -162,6 +145,40 @@ function update_patients_7days()
 
 }
 
+
+
+#
+# get_patient_count_key_date_arr
+#
+
+function get_patient_count_key_date_arr()
+{
+    # get_patient_arr_from_web_csv
+    $patient_arr = $GLOBALS['web_csv_arr'];
+
+    # count patient per day
+    $patient_count_key_date_arr = array_count_values($patient_arr['公表日']);
+
+    # stop flag
+    $today_Ymd = date("Y-m-d");
+
+    # input zero if empty in arr
+    for($i=0;true;$i++)
+    {
+        $Ymd = date("Y-m-d", mktime(0, 0, 0, 2, 18+$i, 2020));
+
+        # inputo 0, if emputy
+        if($patient_count_key_date_arr[$Ymd]=='') $patient_count_key_date_arr[$Ymd] = 0;
+
+        # use 7week ave
+        $ymd_key_arr[] = $Ymd;
+
+        if($today_Ymd==$Ymd) break;
+    }
+    ksort($patient_count_key_date_arr);
+
+    return array($patient_count_key_date_arr, $ymd_key_arr);
+}
 
 
 
@@ -441,7 +458,7 @@ function update_pcr_num()
     if($data_json_arr['date'] != $lastUpDate['ymd'])
     {
         # add twitter comment
-        $GLOBALS['twitter_comment'] .= "・PCR検査数({$lastUpDate['md']}時点)\n";
+        $GLOBALS['twitter_comment'] .= "・PCR検査数({$lastUpDate['md']})\n";
 
         # date update for json
         $data_json_arr['date']      = $lastUpDate['ymd'];
@@ -737,7 +754,7 @@ function update_district_rank_bar()
     if($patient_district['ymd'] != $data_json_arr['cities']['date'])
     {
         # add twitter comment
-        $GLOBALS['twitter_comment'] .= "・区別 陽性患者数({$patient_district['md']}時点)\n";
+        $GLOBALS['twitter_comment'] .= "・区別 陽性数({$patient_district['md']})\n";
 
         # date update for data.json->cities
         $data_json_arr['cities']['date'] = $patient_district['ymd'];
@@ -789,8 +806,6 @@ function update_district_stack_bar()
     # if unmatch last update
     if($patient_district['ymd'] != $data_json_arr['date'])
     {
-        # add twitter comment
-//         $GLOBALS['twitter_comment'] .= "・区別 陽性患者数の推移({$patient_district['md']}時点)\n";
 
         # date update for agency.json
         $data_json_arr['date']     = $patient_district['ymd'];
@@ -877,74 +892,89 @@ function update_patients_num_trend()
     $data_json_arr = jsonUrl2array(_SRC_PATIENT_NUM_TREND_JSON);
 
     # if unmatch last update betweem json and web
-    if($positive_patiant['ymd'] != $data_json_arr['date'])
-    {
-        # date update for agency2.json
-        $data_json_arr['date'] = $positive_patiant['ymd'];
-        $data_json_arr['labels'][] = date('m/d', strtotime($positive_patiant['md']));
-        $data_json_arr['datasets'][0]['data'][] = $positive_patiant['無症状から中等症'];
-        $data_json_arr['datasets'][1]['data'][] = $positive_patiant['重症'];
-        $data_json_arr['datasets'][2]['data'][] = $positive_patiant['死亡'];
-        $data_json_arr['datasets'][3]['data'][] = $positive_patiant['退院等'];
-        $data_json_arr['datasets'][4]['data'][] = $positive_patiant['調査中'];
-
-        # write to json file
-        arr2writeJson($data_json_arr, _SRC_PATIENT_NUM_TREND_JSON);
-
-        # calc today positive num and rank
-        $par_day_data_json_arr = jsonUrl2array(_SRC_PATIENT_PER_DAY_JSON);
-
-        for($i=0;$i<5;$i++)
-        {
-            foreach( $par_day_data_json_arr['datasets'][$i]['data'] as $k => $v )
-            {
-                $per_day_positive_arr[$k] += $v;
-            }
-        }
-
-        $today_key = $k;
-
-        $today_positive_num = $per_day_positive_arr[$today_key];
-
-        arsort($per_day_positive_arr);
-
-        # make rank
-        $rank_num = 1;
-        $rank_num_serial_count = 1;
-        foreach( $per_day_positive_arr as $k => $v )
-        {
-            if($rank_num==1)
-                $rank_arr[$k] = 1;
-            else
-            {
-                if($per_day_positive_arr[$k]==$previous_positive_num)
-                    $rank_num--;
-                else
-                    $rank_num = $rank_num_serial_count;
-
-                 $rank_arr[$k] = $rank_num;
-            }
-
-            $previous_positive_num = $per_day_positive_arr[$k];
-            $rank_num++;
-            $rank_num_serial_count++;
-        }
-
-        $total_rank_count = $rank_num_serial_count-1;
-        $today_rank = $rank_arr[$today_key];
-
-
-        # add twitter comment
-        $GLOBALS['twitter_comment'] .= "・陽性患者数({$positive_patiant['md']}, {$today_positive_num}人, {$today_rank}/{$total_rank_count}位)\n";
-
-
-        # echo
-        echo "update agency2.json: positive number\n";
-        }
-    else
+    if($positive_patiant['ymd'] == $data_json_arr['date'])
     {
         echo "___no update agency2.json: positive number\n";
+        return;
     }
+
+    # date update for agency2.json
+    $data_json_arr['date'] = $positive_patiant['ymd'];
+    $data_json_arr['labels'][] = date('m/d', strtotime($positive_patiant['md']));
+    $data_json_arr['datasets'][0]['data'][] = $positive_patiant['無症状から中等症'];
+    $data_json_arr['datasets'][1]['data'][] = $positive_patiant['重症'];
+    $data_json_arr['datasets'][2]['data'][] = $positive_patiant['死亡'];
+    $data_json_arr['datasets'][3]['data'][] = $positive_patiant['退院等'];
+    $data_json_arr['datasets'][4]['data'][] = $positive_patiant['調査中'];
+
+    # write to json file
+    arr2writeJson($data_json_arr, _SRC_PATIENT_NUM_TREND_JSON);
+
+    # get patient_count_key_date_arr
+    $patient_count_key_date_arr_s = get_patient_count_key_date_arr();
+    $patient_count_key_date_arr = $patient_count_key_date_arr_s[0];
+
+    # make array: day of the week, sunday: 0, saturday: 6, 2/18=2
+    $today_week_num = date("w");
+    $counter = 2; # start 2/18 is 2(tues.)
+    foreach( $patient_count_key_date_arr as $k => $v)
+    {
+        # if it is day of the week
+        if($today_week_num == $counter)
+            $patient_count_key_date_week_arr[$k] = $v;
+
+        # counter up
+        $counter++;
+
+        # reset counter
+        if($counter == 7)
+            $counter = 0;
+    }
+    $today_key = $k;
+    $today_positive_num = $v;
+
+    # 値ソート、降順、キー維持
+    arsort($patient_count_key_date_week_arr);
+
+
+    # make rank
+    $rank_num = 1;
+    $rank_num_serial_count = 1;
+    foreach( $patient_count_key_date_week_arr as $k => $v )
+    {
+        if($rank_num==1)
+            $rank_arr[$k] = 1;
+        else
+        {
+            if($patient_count_key_date_week_arr[$k]==$previous_positive_num)
+                $rank_num--;
+            else
+                $rank_num = $rank_num_serial_count;
+
+             $rank_arr[$k] = $rank_num;
+        }
+
+        $previous_positive_num = $patient_count_key_date_week_arr[$k];
+        $rank_num++;
+        $rank_num_serial_count++;
+    }
+
+    $total_rank_count = $rank_num_serial_count-1;
+    $today_rank = $rank_arr[$today_key];
+
+
+    $week_arr = ['日曜', '月曜', '火曜', '水曜', '木曜', '金曜', '土曜'];
+
+    $today_week_str = $week_arr[$today_week_num];
+
+
+    # add twitter comment
+    $GLOBALS['twitter_comment'] .= "・陽性数({$positive_patiant['md']}, {$today_positive_num}人, {$today_week_str}{$today_rank}/{$total_rank_count}位)\n";
+
+
+    # echo
+    echo "update agency2.json: positive number\n";
+
 }
 
 

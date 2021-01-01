@@ -15,14 +15,14 @@
         <table class="regend-table">
           <tbody>
             <tr>
-              <td><span class="color-test infected-level1" />0-30</td>
-              <td><span class="color-test infected-level2" />30-60</td>
-              <td><span class="color-test infected-level3" />60-90</td>
+              <td><span class="color-test infected-level1" />0-100</td>
+              <td><span class="color-test infected-level2" />100-200</td>
+              <td><span class="color-test infected-level3" />200-300</td>
             </tr>
             <tr>
-              <td><span class="color-test infected-level4" />90-120</td>
-              <td><span class="color-test infected-level5" />120-150</td>
-              <td><span class="color-test infected-level6" />150-</td>
+              <td><span class="color-test infected-level4" />300-400</td>
+              <td><span class="color-test infected-level5" />400-500</td>
+              <td><span class="color-test infected-level6" />500-</td>
             </tr>
           </tbody>
         </table>
@@ -67,15 +67,15 @@ export default {
       const targetElement = document.getElementById(
         'ibaraki-map_svg__' + element.Romaji
       )
-      if (cityPatientsNumber[element.city] <= 30)
+      if (cityPatientsNumber[element.city] <= 100)
         targetElement.classList.add('infected-level1')
-      else if (cityPatientsNumber[element.city] <= 60)
+      else if (cityPatientsNumber[element.city] <= 200)
         targetElement.classList.add('infected-level2')
-      else if (cityPatientsNumber[element.city] <= 90)
+      else if (cityPatientsNumber[element.city] <= 300)
         targetElement.classList.add('infected-level3')
-      else if (cityPatientsNumber[element.city] <= 120)
+      else if (cityPatientsNumber[element.city] <= 400)
         targetElement.classList.add('infected-level4')
-      else if (cityPatientsNumber[element.city] <= 150)
+      else if (cityPatientsNumber[element.city] <= 500)
         targetElement.classList.add('infected-level5')
       else targetElement.classList.add('infected-level6')
     })

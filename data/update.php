@@ -137,7 +137,9 @@ function update_patients_7days()
         list(,$key_m,$key_d) = explode('-',$key_date);
         $arr_for_json['labels'][] = "$key_m/$key_d";
     }
-    $arr_for_json['date'] = $key_date;
+
+    # format Y-m-d to Y/n/j
+    $arr_for_json['date'] = date('Y/n/j', strtotime($key_date));
 
 
     # write to json file

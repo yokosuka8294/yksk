@@ -137,7 +137,9 @@ function update_patients_7days()
         list(,$key_m,$key_d) = explode('-',$key_date);
         $arr_for_json['labels'][] = "$key_m/$key_d";
     }
-    $arr_for_json['date'] = $key_date;
+
+    # format Y-m-d to Y/n/j
+    $arr_for_json['date'] = date('Y/n/j', strtotime($key_date));
 
 
     # write to json file
@@ -195,8 +197,11 @@ function update_district_population_ratio()
     # get array from json url
     $data_json_arr = jsonUrl2array(_SRC_DISTRICT_POPULATION_JSON);
 
+    # get md from json
+    $data_json_date_md = substr($data_json_arr['cities2']['date'], 5);  // 2020/12/24 --> 12/24
+
     # if unmatch last update
-    if($patient_district['ymd'] != $data_json_arr['cities2']['date'])
+    if($patient_district['md'] != $data_json_date_md)
     {
         # date update for data.json->cities
         $data_json_arr['cities2']['date'] = $patient_district['ymd'];
@@ -452,10 +457,11 @@ function update_pcr_num()
     foreach( $patient_num_json_arr['datasets'] as $patient_status_date)
         $pcr_date_positive_sum += $patient_status_date["data"][$key_of_pcr_date];
 
-
+    # get md from json
+    $data_json_date_md = substr($data_json_arr['date'], 5);  // 2020/12/24 --> 12/24
 
     # if unmatch last update
-    if($data_json_arr['date'] != $lastUpDate['ymd'])
+    if($data_json_date_md != $lastUpDate['md'])
     {
         # add twitter comment
         $GLOBALS['twitter_comment'] .= "・PCR検査数({$lastUpDate['md']})\n";
@@ -530,8 +536,11 @@ function update_district_map()
     # get array from json url
     $data_json_arr = jsonUrl2array(_SRC_DISTRICT_MAP_JSON);
 
+    # get md from json
+    $data_json_date_md = substr($data_json_arr['patients']['date'], 5);  // 2020/12/24 --> 12/24
+
     # if unmatch last update
-    if($patient_district['ymd'] != $data_json_arr['patients']['date'])
+    if($patient_district['md'] != $data_json_date_md)
     {
 
         # date update for data.json->patients
@@ -750,8 +759,11 @@ function update_district_rank_bar()
     # get array from json url
     $data_json_arr = jsonUrl2array(_SRC_DISTRICT_RANK_JSON);
 
+    # get md from json
+    $data_json_date_md = substr($data_json_arr['cities']['date'], 5);  // 2020/12/24 --> 12/24
+
     # if unmatch last update
-    if($patient_district['ymd'] != $data_json_arr['cities']['date'])
+    if($patient_district['md'] != $data_json_date_md)
     {
         # add twitter comment
         $GLOBALS['twitter_comment'] .= "・区別 陽性数({$patient_district['md']})\n";
@@ -803,8 +815,11 @@ function update_district_stack_bar()
     # get array from json url
     $data_json_arr = jsonUrl2array(_SRC_DISTRICT_STACK_JSON);
 
+    # get md from json
+    $data_json_date_md = substr($data_json_arr['date'], 5);  // 2020/12/24 --> 12/24
+
     # if unmatch last update
-    if($patient_district['ymd'] != $data_json_arr['date'])
+    if($patient_district['md'] != $data_json_date_md)
     {
 
         # date update for agency.json

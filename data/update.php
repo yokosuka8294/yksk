@@ -36,27 +36,6 @@ exit;
 
 
 //
-// make_tweet_txt
-//
-
-function make_tweet_txt()
-{
-    // if($GLOBALS['twitter_comment'] != ''){
-
-    $date = date("n/j");
-
-        $tweet_txt = "{$date} 更新しました
-
-#横浜市 #新型コロナ
-#COVID19 #yokohama
-
-https://covid19.yokohama";
-
-    // }
-}
-
-
-//
 // update_lastupdate
 //
 
@@ -73,7 +52,7 @@ function update_jsons_by_csv()
 {
     // csvとjsonの最終更新日付を比較
     $CumulativeTotal = jsonUrl2array(CUMULATIVE_TOTAL_JSON);
-    if( compare_with_csv_ymd($CumulativeTotal['date']) )
+    if( compare_with_csv_ymd( end($CumulativeTotal['labels']) ) ) //ログの日付の最終行
         return;
 
     # 累計
@@ -87,7 +66,6 @@ function update_jsons_by_csv()
 
     # 年齢別の状況
     update_status_age_json();
-
 
     make_tweet_txt_by_csv();
 
@@ -295,7 +273,7 @@ function compare_with_csv_ymd( $ymd )
 {
     $ymd     = date('Y-m-d',strtotime($ymd));
     $csv_ymd = date('Y-m-d',fetch_csv_timestamp());
-            
+        
     if( $csv_ymd == $ymd )
     {
         echo "same: $ymd update_jsons_by_csv\n";

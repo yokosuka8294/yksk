@@ -26,15 +26,47 @@ const SEVEN_DAYS_AVE_JSON   = 'seven-days.json';
 const PER_DAY_JSON          = 'total-per-day.json';
 const UPDATE_AWARE_FILE     = 'update.txt';
 
-// $twitter_comment = ''; todo
 update_jsons_by_csv();
 update_ku_jsons();
 update_pcr_jsons();
 
-// make_tweet_by_csv();
-// echo $twitter_comment;
-
 exit;
+
+
+
+
+//
+// make_tweet_txt
+//
+
+function make_tweet_txt()
+{
+    // if($GLOBALS['twitter_comment'] != ''){
+
+    $date = date("n/j");
+
+        $tweet_txt = "{$date} 更新しました
+
+#横浜市 #新型コロナ
+#COVID19 #yokohama
+
+https://covid19.yokohama";
+
+    // }
+}
+
+
+//
+// update_lastupdate
+//
+
+function update_lastupdate()
+{
+    $DataJson = jsonUrl2array(LASTUPDATE_JSON);
+    $DataJson['lastUpdate'] = date("Y-m-d H:i");
+    arr2writeJson($DataJson, LASTUPDATE_JSON);
+}
+
 
 
 function update_jsons_by_csv()
@@ -57,83 +89,168 @@ function update_jsons_by_csv()
     update_status_age_json();
 
 
-    make_tweet_txt(); //todo
+    make_tweet_txt_by_csv();
 
-
-    # 4分後にtweet?
+    update_lastupdate();
 
 }
 
 
 
-function make_tweet_by_csv() # todo
+function make_tweet_txt_by_csv()
+{
+    $PerDays = jsonUrl2array(PER_DAY_JSON);
+    
+    # 日付、曜日
+    $end_ymd    = end($PerDays['labels']); 
+    $ym         = date('n/j', strtotime($end_ymd));
+
+    $Week       = ['日曜', '月曜', '火曜', '水曜', '木曜', '金曜', '土曜'];
+    $week_num   = date('w', strtotime($end_ymd));
+    $week       = $Week[$week_num];
+
+
+    # 人数
+    $end_ymd_key =  array_search($end_ymd, $PerDays['labels']);
+
+    foreach( $PerDays['datasets'] as $k_num => $v_Statuses )
+        $StatusNums[] = $v_Statuses['data'][$end_ymd_key];
+
+    $status_sum = array_sum($StatusNums);
+
+
+    # 7日移動平均
+    $SevenDays = jsonUrl2array(SEVEN_DAYS_AVE_JSON);
+    $seven_days_end_ymd_key = $end_ymd_key - 6;
+    $seven_days_ave = $SevenDays['datasets'][0]['data'][$seven_days_end_ymd_key];
+
+
+    # 7日移動平均順位計算
+    $SevenDaysPositives = $SevenDays['datasets'][0]['data'];
+    $seven_days_rank = make_rank( $SevenDaysPositives, $week_num, 1); // start 20-02-24 is monday --> "11/40位"
+
+
+    # 順位計算
+    foreach( $PerDays['datasets'] as $k_num => $v_Statuses )
+        foreach ($v_Statuses['data'] as $k => $v)
+            $PerDaysSums[$k] += $v;
+
+    $day_rank = make_rank( $PerDaysSums, $week_num, 2);
+
+    $tweet_txt = "・{$ym} 横浜市 陽性患者の発生状況
+　計：{$status_sum}人({$week} {$day_rank['rank']})  
+　　死：{$StatusNums[0]}
+　　重：{$StatusNums[1]}
+　　無〜中：{$StatusNums[2]}
+　　退：{$StatusNums[3]}
+　　調：{$StatusNums[4]}
+
+・先週{$week}：{$day_rank['before_week'][0]}人
+　先々週：{$day_rank['before_week'][1]}人
+
+・7日移動平均：{$seven_days_ave}人({$seven_days_rank['rank']})
+https://covid19.yokohama";
+
+    file_put_contents(UPDATE_AWARE_FILE, $tweet_txt);
+
+// "
+// ・1/21 陽性患者の発生状況
+// 　計：200人(木曜 11/20位)
+// 　　無〜中：11人
+// 　　重：100人
+// 　　死：11人
+// 　　調：100人
+
+// ・7日移動平均：100人(11/11位)
+
+// ・先週木曜：xxx人
+// 　先々週　：xxx人
+
+// https://covid19.yokohama
+// "
+
+}
+
+
+
+
+
+
+
+# 順位作成
+function make_rank( $Positives, $today_week_num, $counter_week_num )
 {
 
-    # fix later below
+    #
+    # 一週間ごとの陽性者数作成
+    #
 
-    # get patient_count_key_date_arr
-    $patient_count_key_date_arr_s = get_patient_count_key_date_arr();
-    $patient_count_key_date_arr = $patient_count_key_date_arr_s[0];
-
-    print_r($patient_count_key_date_arr); exit;
-
-    # make array: day of the week, sunday: 0, saturday: 6, 2/18=2
-    $today_week_num = date("w");
-    $counter = 2; # start 2/18 is 2(tues.)
-    foreach( $patient_count_key_date_arr as $k => $v)
+    foreach( $Positives as $k_num => $v_positives )
     {
-        # if it is day of the week
-        if($today_week_num == $counter)
-            $patient_count_key_date_week_arr[$k] = $v;
-
-        # counter up
-        $counter++;
-
-        # reset counter
-        if($counter == 7)
-            $counter = 0;
-    }
-    $today_key = $k;
-    $today_positive_num = $v;
-
-    # 値ソート、降順、キー維持
-    arsort($patient_count_key_date_week_arr);
-
-
-    # make rank
-    $rank_num = 1;
-    $rank_num_serial_count = 1;
-    foreach( $patient_count_key_date_week_arr as $k => $v )
-    {
-        if($rank_num==1)
-            $rank_arr[$k] = 1;
-        else
-        {
-            if($patient_count_key_date_week_arr[$k]==$previous_positive_num)
-                $rank_num--;
-            else
-                $rank_num = $rank_num_serial_count;
-
-             $rank_arr[$k] = $rank_num;
+        if ( $counter_week_num == $today_week_num ) {
+            $WeekPositives[] = $v_positives;
+            $week_count++; // 40週
         }
 
-        $previous_positive_num = $patient_count_key_date_week_arr[$k];
-        $rank_num++;
-        $rank_num_serial_count++;
+        $counter_week_num++ ;
+
+        if( $counter_week_num == 7 )
+            $counter_week_num = 0;                
     }
 
-    $total_rank_count = $rank_num_serial_count-1;
-    $today_rank = $rank_arr[$today_key];
+    #
+    # 順位算出
+    #
+    $today_key = count($WeekPositives)-1;
+
+    $ArsortedWeekPositives = $WeekPositives;
+    arsort($ArsortedWeekPositives);
+    $count = 1;
+    foreach ($ArsortedWeekPositives as $k_num => $v_rank) {
+        
+        # 最初は1位
+        if($count == 1)
+        {
+            $rank = 1;
+            $count++;
+
+            if($k_num == $today_key)
+                break;
+
+            continue;
+        }
+
+        # 2つ目以降
+        $prev_v_rank = $ArsortedWeekPositives[$k_num-1];
+
+        # 同数だったらカウントアップしない
+        if ( $v_rank != $prev_v_rank) {
+            $rank++;
+        }
+
+        # keyが今日だったら順位確定
+        if($k_num == $today_key)
+            break;
+    }
+    $weeks = count($ArsortedWeekPositives);
+
+    // # ついでに先週・先々週の人数も・・・
+    $one_week_ago = $WeekPositives[$today_key-1];
+    $two_week_ago = $WeekPositives[$today_key-2];
 
 
-    $week_arr = ['日曜', '月曜', '火曜', '水曜', '木曜', '金曜', '土曜'];
-
-    $today_week_str = $week_arr[$today_week_num];
-
-    # add twitter comment
-    $GLOBALS['twitter_comment'] .= "・陽性数({$positive_patiant['md']}, {$today_positive_num}人, {$today_week_str}{$today_rank}/{$total_rank_count}位)\n";
-
+    return array(
+        'rank'          => "{$rank}位/{$weeks}週",
+        'before_week'   => 
+            [
+                $one_week_ago,
+                $two_week_ago
+            ]
+        );
 }
+
+
+
 
 
 
@@ -866,42 +983,6 @@ function md2yyyymmdd($month, $day)
     return date('Y-m-d', strtotime("${year}-${month}-${day}"));
 }
 
-
-
-//
-// make_tweet_txt
-//
-
-function make_tweet_txt()
-{
-    // if($GLOBALS['twitter_comment'] != ''){
-
-    $date = date("n/j");
-
-        $tweet_txt = "{$date} 更新しました
-
-#横浜市 #新型コロナ
-#COVID19 #yokohama
-
-https://covid19.yokohama";
-
-        file_put_contents(UPDATE_AWARE_FILE, $tweet_txt);
-
-        update_lastupdate();
-    // }
-}
-
-
-//
-// update_lastupdate
-//
-
-function update_lastupdate()
-{
-    $DataJson = jsonUrl2array(LASTUPDATE_JSON);
-    $DataJson['lastUpdate'] = date("Y-m-d H:i");
-    arr2writeJson($DataJson, LASTUPDATE_JSON);
-}
 
 
 

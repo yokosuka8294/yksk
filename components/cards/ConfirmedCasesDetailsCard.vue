@@ -4,7 +4,7 @@
       :title="$t('検査陽性者の状況')"
       :source-title="$t('横須賀市オープンデータポータル')"
       :source-url="
-        $t('https://data.city.yokosuka.lg.jp/dataset/kenko_corona-data')
+        $t('https://data.city.yokohama.lg.jp/dataset/kenko_corona-data')
       "
       :title-id="'details-of-confirmed-cases'"
       :date="updatedAt"

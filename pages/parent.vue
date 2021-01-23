@@ -42,7 +42,7 @@
           }}
         </li>
         <external-link
-          url="https://www.city.yokosuka.lg.jp/kurashi/kenko-iryo/yobosesshu/kansensho/ncov-soudan.html#0BE33"
+          url="https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/yobosesshu/kansensho/ncov-soudan.html#0BE33"
           :icon-size="16"
           >{{
             $t(
@@ -52,7 +52,7 @@
         </external-link>
         <br />
         <external-link
-          url="https://www.city.yokosuka.lg.jp/kurashi/kenko-iryo/yobosesshu/kansensho/ncov-soudan.html#126A3"
+          url="https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/yobosesshu/kansensho/ncov-soudan.html#126A3"
           :icon-size="16"
           >{{ $t('「新型コロナウイルス感染症帰国者・接触者相談センター」') }}
         </external-link>

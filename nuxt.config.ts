@@ -23,7 +23,7 @@ const config: Configuration = {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://covid19.yokosuka'
+        content: 'https://covid19.yokohama'
       },
       {
         hid: 'twitter:card',
@@ -33,12 +33,12 @@ const config: Configuration = {
       {
         hid: 'twitter:site',
         name: 'twitter:site',
-        content: '@covid19yokosuka'
+        content: '@covid19yokohama'
       },
       {
         hid: 'twitter:creator',
         name: 'twitter:creator',
-        content: '@covid19yokosuka'
+        content: '@covid19yokohama'
       },
       {
         hid: 'fb:app_id',

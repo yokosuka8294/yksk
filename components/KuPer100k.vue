@@ -6,7 +6,7 @@
     :source-title="$t('横須賀市 推計人口・世帯数')"
     :source-url="
       $t(
-        'https://www.city.yokosuka.lg.jp/city-info/yokosukashi/tokei-chosa/portal/jinko/maitsuki/saishin-news.html'
+        'https://www.city.yokohama.lg.jp/city-info/yokohamashi/tokei-chosa/portal/jinko/maitsuki/saishin-news.html'
       )
     "
   >

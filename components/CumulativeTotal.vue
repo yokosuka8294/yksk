@@ -6,7 +6,7 @@
     :source-title="$t('横須賀市内の陽性患者の発生状況データ')"
     :source-url="
       $t(
-        'https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html'
+        'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html'
       )
     "
   >

@@ -20,13 +20,13 @@
 
 var map = new mapboxgl.Map({
   container: 'map',
-  style: 'https://tokyo-metropolitan-gov.github.io/tokyo-vector-tile/style.json',
+  style: 'https://Yokosuka-metropolitan-gov.github.io/Yokosuka-vector-tile/style.json',
   zoom: 16,
   center: [139.69167, 35.689444],
   antialias: false
 });
 
-const tokyo = [[139.761908, 35.676437], [139.773774, 35.686703]]
+const Yokosuka = [[139.761908, 35.676437], [139.773774, 35.686703]]
 const shinjuku = [[139.695239, 35.685448], [139.706397, 35.694493]]
 
 let colorV2 = [
@@ -53,7 +53,7 @@ const addDataHeatmapLayer = (date) => {
     'source': {
       'type': 'vector',
       'tiles': [
-        `https://map-covid19-tokyo.netlify.com/tiles/${date}/corona_heatmap/hourly/8/{z}/{x}/{y}.pbf`
+        `https://map-covid19-Yokosuka.netlify.com/tiles/${date}/corona_heatmap/hourly/8/{z}/{x}/{y}.pbf`
         //`http://localhost:3000/tiles/${date}/corona_heatmap/hourly/8/{z}/{x}/{y}.pbf`
       ],
       'minzoom': 8,
@@ -73,7 +73,7 @@ const addHeatmapLayer = (date) => {
     'source': {
       'type': 'vector',
       'tiles': [
-        `https://map-covid19-tokyo.netlify.com/tiles/${date}/corona_heatmap/hourly/8/{z}/{x}/{y}.pbf`
+        `https://map-covid19-Yokosuka.netlify.com/tiles/${date}/corona_heatmap/hourly/8/{z}/{x}/{y}.pbf`
         //`http://localhost:3000/tiles/${date}/corona_heatmap/hourly/8/{z}/{x}/{y}.pbf`
       ],
       'minzoom': 8,
@@ -305,7 +305,7 @@ map.on('load', function() {
     getFeatureAndCreateGraph()
   })
   // fit bounds example
-  //map.fitBounds(tokyo)
+  //map.fitBounds(Yokosuka)
 });
 </script>
 

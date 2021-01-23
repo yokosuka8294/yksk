@@ -1227,7 +1227,7 @@ function fetch_yokosuka_corona_html()
     # まだhtmlをfetchしていなければ読み込む
     if ($html == '')
     {
-        $html = file_get_contents('https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html');
+        $html = file_get_contents('https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html');
         $html = str_replace(",","",$html); # ex: 123,456 -> 123456 数字抽出のため
     }
 

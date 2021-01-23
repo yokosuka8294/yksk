@@ -13,7 +13,7 @@
     </div>
     <static-info
       class="mb-4"
-      url="https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/covid-19/allNewsList.html"
+      url="https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/covid-19/allNewsList.html"
       target="_blank"
       rel="noopener"
       :text="$t('横須賀市発表の新型コロナウイルス感染症に関する最新情報はこちら')"

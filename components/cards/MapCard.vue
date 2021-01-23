@@ -2,12 +2,12 @@
   <v-col cols="12" md="6" class="DataCard">
     <data-view
       :title="$t('区別 10万人あたりの陽性者人数マップ')"
-      :title-id="'yokohama-city-map-table'"
+      :title-id="'yokosuka-city-map-table'"
       :date="Data.patients.date"
       :source-title="$t('横須賀市内の陽性患者の発生状況データ')"
       :source-url="
         $t(
-          'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html'
+          'https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html'
         )
       "
     >
@@ -27,20 +27,20 @@
           </tbody>
         </table>
       </template>
-      <yokohama-map />
+      <yokosuka-map />
     </data-view>
   </v-col>
 </template>
 
 <script>
 import Data from '@/data/map.json'
-import yokohamaMap from '@/assets/yokohama-map.svg'
+import yokosukaMap from '@/assets/yokosuka-map.svg'
 import DataView from '@/components/DataView.vue'
 import CityData from '@/data/cities.json'
 
 export default {
   components: {
-    yokohamaMap,
+    yokosukaMap,
     DataView
   },
   data() {
@@ -65,7 +65,7 @@ export default {
         return
       }
       const targetElement = document.getElementById(
-        'yokohama-map_svg__' + element.Romaji
+        'yokosuka-map_svg__' + element.Romaji
       )
       if (cityPatientsNumber[element.city] <= 100)
         targetElement.classList.add('infected-level1')

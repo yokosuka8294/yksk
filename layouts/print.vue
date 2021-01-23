@@ -24,7 +24,7 @@
             <p class="PrintMeta-Text">
               {{ $t('※最新の情報はWebページをご覧ください') }}
             </p>
-            <p class="PrintMeta-Link">https://covid19.yokohama/</p>
+            <p class="PrintMeta-Link">https://covid19.yokosuka/</p>
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@ export default Vue.extend({
       link: [
         {
           rel: 'canonical',
-          href: `https://covid19.yokohama${this.$route.path}`
+          href: `https://covid19.yokosuka${this.$route.path}`
         }
       ]
     }

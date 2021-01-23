@@ -4,7 +4,7 @@
 #
 # /data にある *.json を更新するスクリプト
 # cron で18-24時の間、10分感覚で　"$ php update.php" が実行される
-# json が更新された場合、git push -> Actions -> covid19.yokosuka が更新される
+# json が更新された場合、git push -> Actions -> covid19.yokohama が更新される
 # json に更新があった場合、UPDATE_AWARE_FILE にツイートする内容を書き込む
 #
 #
@@ -127,7 +127,7 @@ function make_tweet_txt_by_csv()
 　先々週：{$day_rank['before_week'][1]}人
 
 ・7日移動平均：{$seven_days_ave}人({$seven_days_rank['rank']})
-https://covid19.yokosuka";
+https://covid19.yokohama";
 
     file_put_contents(UPDATE_AWARE_FILE, $tweet_txt);
 
@@ -144,7 +144,7 @@ https://covid19.yokosuka";
 // ・先週木曜：xxx人
 // 　先々週　：xxx人
 
-// https://covid19.yokosuka
+// https://covid19.yokohama
 // "
 
 }
@@ -920,7 +920,7 @@ function update_pcr_total_json()
 
 function fetch_Pcr()
 {
-    $html = fetch_yokosuka_corona_html();
+    $html = fetch_yokohama_corona_html();
 
     # PCR検査数の更新日付を抽出. ex. $match_ym[1]=1, $match_ym[2]=10
     preg_match("|ＰＣＲ検査数（([0-9]+)月([0-9]+)日時点）|us",$html,$match_ym); 
@@ -1153,8 +1153,8 @@ function fetch_ku()
         return $KuSet;
 
 
-    # get html of yokosuka web site
-    $html = fetch_yokosuka_corona_html();
+    # get html of yokohama web site
+    $html = fetch_yokohama_corona_html();
 
     # extract date
     preg_match("|区別発生状況（患者住所地）（([0-9０-９]+)月([0-9０-９]+)日時点）|us",$html,$match_ku);
@@ -1187,8 +1187,8 @@ function fetch_ku()
 
 function extract_positive_array()
 {
-    # get html of yokosuka web site
-    $html = fetch_yokosuka_corona_html();
+    # get html of yokohama web site
+    $html = fetch_yokohama_corona_html();
 
     # last update
     preg_match("|陽性患者の状況（([0-9]+)月([0-9]+)日時点）|us",$html,$match_md);
@@ -1219,7 +1219,7 @@ function extract_positive_array()
 # 1回読んだらキャッシュしておく。
 #
 
-function fetch_yokosuka_corona_html()
+function fetch_yokohama_corona_html()
 {
     # キャッシュしたかのフラグ用
     static $html = '';

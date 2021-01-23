@@ -4,7 +4,7 @@
 #
 # /data にある *.json を更新するスクリプト
 # cron で18-24時の間、10分感覚で　"$ php update.php" が実行される
-# json が更新された場合、git push -> Actions -> covid19.yokohama が更新される
+# json が更新された場合、git push -> Actions -> covid19.yokosuka が更新される
 # json に更新があった場合、UPDATE_AWARE_FILE にツイートする内容を書き込む
 #
 #
@@ -115,7 +115,7 @@ function make_tweet_txt_by_csv()
 
     $day_rank = make_rank( $PerDaysSums, $week_num, 2);
 
-    $tweet_txt = "・{$ym} 横浜市 陽性患者の発生状況
+    $tweet_txt = "・{$ym} 横須賀市 陽性患者の発生状況
 　計：{$status_sum}人({$week} {$day_rank['rank']})  
 　　死：{$StatusNums[0]}
 　　重：{$StatusNums[1]}
@@ -127,7 +127,7 @@ function make_tweet_txt_by_csv()
 　先々週：{$day_rank['before_week'][1]}人
 
 ・7日移動平均：{$seven_days_ave}人({$seven_days_rank['rank']})
-https://covid19.yokohama";
+https://covid19.yokosuka";
 
     file_put_contents(UPDATE_AWARE_FILE, $tweet_txt);
 
@@ -144,7 +144,7 @@ https://covid19.yokohama";
 // ・先週木曜：xxx人
 // 　先々週　：xxx人
 
-// https://covid19.yokohama
+// https://covid19.yokosuka
 // "
 
 }
@@ -556,7 +556,7 @@ function fetch_csv_timestamp()
         return $timestamp;
 
     # ヘッダーのタイムスタンプを入手
-    $timestamp = url2modified_timestamp('https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.files/141003_yokohama_covid19_patients.csv');
+    $timestamp = url2modified_timestamp('https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/corona-data.files/141003_yokosuka_covid19_patients.csv');
 
     return $timestamp;
 }
@@ -920,7 +920,7 @@ function update_pcr_total_json()
 
 function fetch_Pcr()
 {
-    $html = fetch_yokohama_corona_html();
+    $html = fetch_yokosuka_corona_html();
 
     # PCR検査数の更新日付を抽出. ex. $match_ym[1]=1, $match_ym[2]=10
     preg_match("|ＰＣＲ検査数（([0-9]+)月([0-9]+)日時点）|us",$html,$match_ym); 
@@ -1039,7 +1039,7 @@ function fetch_positive_csv()
         return $csv_data;
 
     # csv to arr
-    $csv = file('https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.files/141003_yokohama_covid19_patients.csv');
+    $csv = file('https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/corona-data.files/141003_yokosuka_covid19_patients.csv');
     $Csv = array_map('str_getcsv', $csv);
 
     # array[0]の配列を添字にしてarray[1]以降を格納
@@ -1153,8 +1153,8 @@ function fetch_ku()
         return $KuSet;
 
 
-    # get html of yokohama web site
-    $html = fetch_yokohama_corona_html();
+    # get html of yokosuka web site
+    $html = fetch_yokosuka_corona_html();
 
     # extract date
     preg_match("|区別発生状況（患者住所地）（([0-9０-９]+)月([0-9０-９]+)日時点）|us",$html,$match_ku);
@@ -1187,8 +1187,8 @@ function fetch_ku()
 
 function extract_positive_array()
 {
-    # get html of yokohama web site
-    $html = fetch_yokohama_corona_html();
+    # get html of yokosuka web site
+    $html = fetch_yokosuka_corona_html();
 
     # last update
     preg_match("|陽性患者の状況（([0-9]+)月([0-9]+)日時点）|us",$html,$match_md);
@@ -1215,11 +1215,11 @@ function extract_positive_array()
 
 
 #
-# 横浜市のコロナサイトのhtmlを読み込む。
+# 横須賀市のコロナサイトのhtmlを読み込む。
 # 1回読んだらキャッシュしておく。
 #
 
-function fetch_yokohama_corona_html()
+function fetch_yokosuka_corona_html()
 {
     # キャッシュしたかのフラグ用
     static $html = '';
@@ -1227,7 +1227,7 @@ function fetch_yokohama_corona_html()
     # まだhtmlをfetchしていなければ読み込む
     if ($html == '')
     {
-        $html = file_get_contents('https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html');
+        $html = file_get_contents('https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html');
         $html = str_replace(",","",$html); # ex: 123,456 -> 123456 数字抽出のため
     }
 

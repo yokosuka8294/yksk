@@ -15,7 +15,7 @@ const config: Configuration = {
     htmlAttrs: {
       prefix: 'og: http://ogp.me/ns#'
     },
-    titleTemplate: '%s | 横浜市 新型コロナウイルス感染症対策サイト(非公式)',
+    titleTemplate: '%s | 横須賀市 新型コロナウイルス感染症対策サイト(非公式)',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -23,7 +23,7 @@ const config: Configuration = {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://covid19.yokohama'
+        content: 'https://covid19.yokosuka'
       },
       {
         hid: 'twitter:card',
@@ -33,12 +33,12 @@ const config: Configuration = {
       {
         hid: 'twitter:site',
         name: 'twitter:site',
-        content: '@covid19yokohama'
+        content: '@covid19yokosuka'
       },
       {
         hid: 'twitter:creator',
         name: 'twitter:creator',
-        content: '@covid19yokohama'
+        content: '@covid19yokosuka'
       },
       {
         hid: 'fb:app_id',
@@ -155,7 +155,7 @@ const config: Configuration = {
     // hardSource: process.env.NODE_ENV === 'development'
   },
   manifest: {
-    name: '横浜市 新型コロナウイルス感染症対策サイト(非公式)',
+    name: '横須賀市 新型コロナウイルス感染症対策サイト(非公式)',
     theme_color: '#0040a0',
     background_color: '#ffffff',
     display: 'standalone',

@@ -2,7 +2,7 @@
   <v-app class="app">
     <v-overlay v-if="loading" color="#F8F9FA" opacity="1" z-index="9999">
       <div class="loader">
-        <img src="/logo.png" alt="横浜市" />
+        <img src="/logo.png" alt="横須賀市" />
         <scale-loader color="#0DA9DD" />
       </div>
     </v-overlay>
@@ -104,7 +104,7 @@ export default Vue.extend({
       link: [
         {
           rel: 'canonical',
-          href: `https://covid19.yokohama${this.$route.path}`
+          href: `https://covid19.yokosuka${this.$route.path}`
         },
         {
           rel: 'stylesheet',
@@ -115,7 +115,7 @@ export default Vue.extend({
         {
           hid: 'author',
           name: 'author',
-          content: this.$tc('covid19yokohama')
+          content: this.$tc('covid19yokosuka')
         },
         {
           hid: 'description',
@@ -131,7 +131,7 @@ export default Vue.extend({
           hid: 'og:site_name',
           property: 'og:site_name',
           content:
-            this.$t('横浜市') +
+            this.$t('横須賀市') +
             ' ' +
             this.$t('新型コロナウイルス感染症') +
             ' ' +
@@ -140,14 +140,14 @@ export default Vue.extend({
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://covid19.yokohama${this.$route.path}`
+          content: `https://covid19.yokosuka${this.$route.path}`
         },
         ogLocale,
         {
           hid: 'og:title',
           property: 'og:title',
           content:
-            this.$t('横浜市') +
+            this.$t('横須賀市') +
             ' ' +
             this.$t('新型コロナウイルス感染症') +
             ' ' +
@@ -166,13 +166,13 @@ export default Vue.extend({
         {
           hid: 'og:image',
           property: 'og:image',
-          content: this.$tc('https://covid19.yokohama/ogp.png')
+          content: this.$tc('https://covid19.yokosuka/ogp.png')
         },
         {
           hid: 'apple-mobile-web-app-title',
           name: 'apple-mobile-web-app-title',
           content:
-            this.$t('横浜市') +
+            this.$t('横須賀市') +
             ' ' +
             this.$t('新型コロナウイルス感染症') +
             ' ' +
@@ -181,7 +181,7 @@ export default Vue.extend({
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: this.$tc('https://covid19.yokohama/ogp.png')
+          content: this.$tc('https://covid19.yokosuka/ogp.png')
         }
       ]
     }

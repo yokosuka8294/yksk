@@ -14,7 +14,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 date_default_timezone_set('Asia/Tokyo');
 
 # const
-const _SRC_URL = 'https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html';
+const _SRC_URL = 'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html';
 const _SRC_LASTUPDATE_JSON          = 'data.json';
 const _SRC_DISTRICT_MAP_JSON        = 'data.json';
 const _SRC_DISTRICT_RANK_JSON       = 'data.json';
@@ -574,7 +574,7 @@ function get_patient_arr_from_web_csv()
 
     # get patients csv
     preg_match("|<a class=\"csv\" href=\"(.*?)\">陽性患者の発生状況のオープンデータ|us",$html,$match);
-    $_SRC_CSV_URL = "https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/".$match[1];
+    $_SRC_CSV_URL = "https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/".$match[1];
 
 
 //     # last update day

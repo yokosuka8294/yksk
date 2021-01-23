@@ -2,7 +2,7 @@
   <v-app class="app">
     <v-overlay v-if="loading" color="#F8F9FA" opacity="1" z-index="9999">
       <div class="loader">
-        <img src="/logo.png" alt="横浜市" />
+        <img src="/logo.png" alt="横須賀市" />
         <scale-loader color="#0DA9DD" />
       </div>
     </v-overlay>
@@ -131,7 +131,7 @@ export default Vue.extend({
           hid: 'og:site_name',
           property: 'og:site_name',
           content:
-            this.$t('横浜市') +
+            this.$t('横須賀市') +
             ' ' +
             this.$t('新型コロナウイルス感染症') +
             ' ' +
@@ -147,7 +147,7 @@ export default Vue.extend({
           hid: 'og:title',
           property: 'og:title',
           content:
-            this.$t('横浜市') +
+            this.$t('横須賀市') +
             ' ' +
             this.$t('新型コロナウイルス感染症') +
             ' ' +
@@ -172,7 +172,7 @@ export default Vue.extend({
           hid: 'apple-mobile-web-app-title',
           name: 'apple-mobile-web-app-title',
           content:
-            this.$t('横浜市') +
+            this.$t('横須賀市') +
             ' ' +
             this.$t('新型コロナウイルス感染症') +
             ' ' +

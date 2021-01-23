@@ -1,14 +1,14 @@
 <template>
   <v-app class="app-print">
     <div v-if="loading" class="loader">
-      <img src="/logo.png" :alt="$t('横浜市')" />
+      <img src="/logo.png" :alt="$t('横須賀市')" />
       <scale-loader color="#0DA9DD" />
     </div>
     <div v-else class="print-container">
       <div class="PrintMeta">
         <div class="PrintMeta-HeadingWrapper">
           <div class="PrintMeta-Logo">
-            <img src="/logo.png" :alt="$t('横浜市')" />
+            <img src="/logo.png" :alt="$t('横須賀市')" />
           </div>
           <h1 class="PrintMeta-Heading">
             {{ $t('新型コロナウイルス感染症') }}

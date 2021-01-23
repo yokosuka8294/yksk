@@ -4,7 +4,7 @@
       :title="$t('区別 陽性者人数マップ(退院含む)')"
       :title-id="'ibaraki-city-map-table'"
       :date="Data.patients.date"
-      :source-title="$t('横浜市内の陽性患者の発生状況データ')"
+      :source-title="$t('横須賀市内の陽性患者の発生状況データ')"
       :source-url="
         $t(
           'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html'

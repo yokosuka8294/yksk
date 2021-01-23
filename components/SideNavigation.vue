@@ -13,7 +13,7 @@
           <img
             class="SideNavigation-HeaderLogo"
             src="/logo.png"
-            :alt="$t('横浜市')"
+            :alt="$t('横須賀市')"
           />
           <div class="SideNavigation-HeaderText">
             {{ $t('新型コロナウイルス感染症') }}<br />{{
@@ -154,7 +154,7 @@ export default Vue.extend({
             'https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/yobosesshu/kansensho/coronavirus/coronavirus.html'
         },
         {
-          title: this.$t('横浜市主催等 中止又は延期するイベント等'),
+          title: this.$t('横須賀市主催等 中止又は延期するイベント等'),
           link:
             'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/event/'
         },
@@ -168,7 +168,7 @@ export default Vue.extend({
           link: this.localePath('/about')
         },
         {
-          title: this.$t('横浜市公式ホームページ'),
+          title: this.$t('横須賀市公式ホームページ'),
           link: 'https://www.city.yokohama.lg.jp/'
         }
       ]

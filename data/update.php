@@ -380,7 +380,7 @@ function make_tweet_txt()
 
         $tweet_txt = "更新：
 {$GLOBALS['twitter_comment']}
-#横浜市 #新型コロナ
+#横須賀市 #新型コロナ
 #COVID19 #yokohama
 
 https://covid19.yokohama";

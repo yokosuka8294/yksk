@@ -3,7 +3,7 @@
     :title="title"
     :title-id="titleId"
     :date="date"
-    :source-title="$t('横浜市 推計人口・世帯数')"
+    :source-title="$t('横須賀市 推計人口・世帯数')"
     :source-url="
       $t(
         'https://www.city.yokohama.lg.jp/city-info/yokohamashi/tokei-chosa/portal/jinko/maitsuki/saishin-news.html'

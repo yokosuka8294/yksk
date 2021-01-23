@@ -15,7 +15,7 @@ const config: Configuration = {
     htmlAttrs: {
       prefix: 'og: http://ogp.me/ns#'
     },
-    titleTemplate: '%s | 横浜市 新型コロナウイルス感染症対策サイト(非公式)',
+    titleTemplate: '%s | 横須賀市 新型コロナウイルス感染症対策サイト(非公式)',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -155,7 +155,7 @@ const config: Configuration = {
     // hardSource: process.env.NODE_ENV === 'development'
   },
   manifest: {
-    name: '横浜市 新型コロナウイルス感染症対策サイト(非公式)',
+    name: '横須賀市 新型コロナウイルス感染症対策サイト(非公式)',
     theme_color: '#0040a0',
     background_color: '#ffffff',
     display: 'standalone',

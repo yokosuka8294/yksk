@@ -14,7 +14,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 date_default_timezone_set('Asia/Tokyo');
 
 # const
-const _SRC_URL = 'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html';
+const _SRC_URL = 'https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html';
 const _SRC_LASTUPDATE_JSON          = 'data.json';
 const _SRC_DISTRICT_MAP_JSON        = 'data.json';
 const _SRC_DISTRICT_RANK_JSON       = 'data.json';
@@ -28,7 +28,7 @@ const _SRC_PATIENT_PER_DAY_JSON     = 'agency5.json';
 // const _PATIENT_PER_DAY_DISP_NUM     = 20;
 
 # 2020-05-01
-$yokohama_popuration_arr =
+$yokosuka_popuration_arr =
     [
         '中区' => 151604,
         '保土ケ谷区' => 205957,
@@ -101,7 +101,7 @@ function update_district_population_ratio()
         # calc positive numvber / 100k
         foreach( $only_district_arr as $ku => $positive_num)
         {
-            foreach( $GLOBALS['yokohama_popuration_arr'] as $ku2 => $population )
+            foreach( $GLOBALS['yokosuka_popuration_arr'] as $ku2 => $population )
             {
                 if($ku == $ku2)
                 {
@@ -381,9 +381,9 @@ function make_tweet_txt()
         $tweet_txt = "更新：
 {$GLOBALS['twitter_comment']}
 #横須賀市 #新型コロナ
-#COVID19 #yokohama
+#COVID19 #yokosuka
 
-https://covid19.yokohama";
+https://covid19.yokosuka";
 
         file_put_contents(_UPDATE_AWARE_FILE, $tweet_txt);
 
@@ -569,12 +569,12 @@ function update_patients_age_bar()
 
 function get_patient_arr_from_web_csv()
 {
-    # get html of yokohama web site
+    # get html of yokosuka web site
     $html = $GLOBALS['html'];
 
     # get patients csv
     preg_match("|<a class=\"csv\" href=\"(.*?)\">陽性患者の発生状況のオープンデータ|us",$html,$match);
-    $_SRC_CSV_URL = "https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/".$match[1];
+    $_SRC_CSV_URL = "https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/".$match[1];
 
 
 //     # last update day
@@ -735,7 +735,7 @@ function update_district_stack_bar()
 
 function get_patient_district_arr_from_web()
 {
-    # get html of yokohama web site
+    # get html of yokosuka web site
     $html = $GLOBALS['html'];
 
     # extract date
@@ -806,7 +806,7 @@ function update_patients_num_trend()
 
 function get_patient_num_arr_from_web()
 {
-    # get html of yokohama web site
+    # get html of yokosuka web site
     $html = $GLOBALS['html'];
 
     # last update

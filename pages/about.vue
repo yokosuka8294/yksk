@@ -200,7 +200,7 @@
       >
         <template v-slot:catalogWebsite>
           <external-link
-            url="https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html"
+            url="https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html"
             :icon-size="16"
           >
             {{ $t('横須賀市内の陽性患者の発生状況データ') }}
@@ -219,7 +219,7 @@
         <i18n path="詳しくは、{githubRepo}をご確認ください。">
           <template v-slot:githubRepo>
             <external-link
-              url="https://github.com/covid19yokohama/covid19"
+              url="https://github.com/covid19yokosuka/covid19"
               :icon-size="16"
             >
               {{ $t('GitHub リポジトリ') }}

@@ -104,7 +104,7 @@ export default Vue.extend({
       link: [
         {
           rel: 'canonical',
-          href: `https://covid19.yokohama${this.$route.path}`
+          href: `https://covid19.yokosuka${this.$route.path}`
         },
         {
           rel: 'stylesheet',
@@ -115,7 +115,7 @@ export default Vue.extend({
         {
           hid: 'author',
           name: 'author',
-          content: this.$tc('covid19yokohama')
+          content: this.$tc('covid19yokosuka')
         },
         {
           hid: 'description',
@@ -140,7 +140,7 @@ export default Vue.extend({
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://covid19.yokohama${this.$route.path}`
+          content: `https://covid19.yokosuka${this.$route.path}`
         },
         ogLocale,
         {
@@ -166,7 +166,7 @@ export default Vue.extend({
         {
           hid: 'og:image',
           property: 'og:image',
-          content: this.$tc('https://covid19.yokohama/ogp.png')
+          content: this.$tc('https://covid19.yokosuka/ogp.png')
         },
         {
           hid: 'apple-mobile-web-app-title',
@@ -181,7 +181,7 @@ export default Vue.extend({
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: this.$tc('https://covid19.yokohama/ogp.png')
+          content: this.$tc('https://covid19.yokosuka/ogp.png')
         }
       ]
     }

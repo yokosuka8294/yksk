@@ -57,7 +57,7 @@
       <footer class="SideNavigation-Footer">
         <div class="SideNavigation-Social">
           <a
-            href="https://twitter.com/covid19yokohama"
+            href="https://twitter.com/covid19yokosuka"
             target="_blank"
             rel="noopener noreferrer"
             class="SideNavigation-SocialLink"
@@ -68,7 +68,7 @@
             </picture>
           </a>
           <a
-            href="https://github.com/covid19yokohama/covid19"
+            href="https://github.com/covid19yokosuka/covid19"
             target="_blank"
             rel="noopener noreferrer"
             class="SideNavigation-SocialLink"
@@ -91,7 +91,7 @@
           </a>
           {{ $t('の下に提供されています。') }}
           <br />
-          2020 covid19yokohama
+          2020 covid19yokosuka
         </small>
       </footer>
     </div>
@@ -139,7 +139,7 @@ export default Vue.extend({
           icon: 'CovidIcon',
           title: this.$t('新型コロナウイルス感染症が心配なときに'),
           link:
-            'https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/yobosesshu/kansensho/ncov-soudan.html',
+            'https://www.city.yokosuka.lg.jp/kurashi/kenko-iryo/yobosesshu/kansensho/ncov-soudan.html',
           divider: true
         },
         {
@@ -151,17 +151,17 @@ export default Vue.extend({
           icon: 'mdi-account-multiple',
           title: this.$t('市民の皆様へ'),
           link:
-            'https://www.city.yokohama.lg.jp/kurashi/kenko-iryo/yobosesshu/kansensho/coronavirus/coronavirus.html'
+            'https://www.city.yokosuka.lg.jp/kurashi/kenko-iryo/yobosesshu/kansensho/coronavirus/coronavirus.html'
         },
         {
           title: this.$t('横須賀市主催等 中止又は延期するイベント等'),
           link:
-            'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/event/'
+            'https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/event/'
         },
         {
           title: this.$t('市長からのメッセージ'),
           link:
-            'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/movie-list.html'
+            'https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/movie-list.html'
         },
         {
           title: this.$t('当サイトについて'),
@@ -169,7 +169,7 @@ export default Vue.extend({
         },
         {
           title: this.$t('横須賀市公式ホームページ'),
-          link: 'https://www.city.yokohama.lg.jp/'
+          link: 'https://www.city.yokosuka.lg.jp/'
         }
       ]
     }

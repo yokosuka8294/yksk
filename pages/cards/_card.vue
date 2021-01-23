@@ -159,7 +159,7 @@ export default {
     return data
   },
   head() {
-    const url = 'https://covid19.yokohama'
+    const url = 'https://covid19.yokosuka'
     const timestamp = new Date().getTime()
     const ogpImage =
       this.$i18n.locale === 'ja'

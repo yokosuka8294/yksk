@@ -156,12 +156,12 @@ export default Vue.extend({
         {
           title: this.$t('横須賀市主催等 中止又は延期するイベント等'),
           link:
-            'https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/event/'
+            'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/event/'
         },
         {
           title: this.$t('市長からのメッセージ'),
           link:
-            'https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/movie-list.html'
+            'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/movie-list.html'
         },
         {
           title: this.$t('当サイトについて'),

@@ -556,7 +556,7 @@ function fetch_csv_timestamp()
         return $timestamp;
 
     # ヘッダーのタイムスタンプを入手
-    $timestamp = url2modified_timestamp('https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/corona-data.files/141003_yokosuka_covid19_patients.csv');
+    $timestamp = url2modified_timestamp('https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.files/141003_yokohama_covid19_patients.csv');
 
     return $timestamp;
 }
@@ -1039,7 +1039,7 @@ function fetch_positive_csv()
         return $csv_data;
 
     # csv to arr
-    $csv = file('https://www.city.yokosuka.lg.jp/city-info/koho-kocho/koho/topics/corona-data.files/141003_yokosuka_covid19_patients.csv');
+    $csv = file('https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.files/141003_yokohama_covid19_patients.csv');
     $Csv = array_map('str_getcsv', $csv);
 
     # array[0]の配列を添字にしてarray[1]以降を格納

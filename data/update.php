@@ -14,7 +14,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 date_default_timezone_set('Asia/Tokyo');
 
 # const
-const _SRC_URL = 'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.html';
+const _SRC_URL = 'https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/topics/corona-data.files/141003_yokohama_covid19_patients.csv';
 const _SRC_LASTUPDATE_JSON          = 'data.json';
 const _SRC_DISTRICT_MAP_JSON        = 'data.json';
 const _SRC_DISTRICT_RANK_JSON       = 'data.json';
